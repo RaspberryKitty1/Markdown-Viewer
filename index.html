@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,17 @@
   </nav>
 
   <main>
-    <article id="preview" class="markdown-body"></article>
+    <article id="preview" class="markdown-body">
+      <p style="color:#8b949e; text-align:center; margin-top:4rem;">
+        Upload a markdown file to preview it here.
+      </p>
+    </article>
+
+    <div id="dropzone" aria-label="Drag and drop markdown file here" 
+         style="max-width:900px; margin: 2rem auto; border: 2px dashed #30363d; 
+                border-radius: 8px; padding: 2rem; color: #8b949e; text-align: center; cursor: pointer;">
+      Drag and drop a markdown file here or click 📂 to upload
+    </div>
   </main>
 
   <script src="assets/marked.min.js"></script>
