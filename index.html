@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Viewer (Dark Mode)</title>
+  <link rel="stylesheet" href="assets/github-markdown.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav id="topbar">
+    <div id="site-name">Markdown Viewer</div>
+    <div id="file-upload-container">
+      <input type="file" id="fileInput" accept=".md,.markdown,.txt" style="display:none" />
+      <button id="uploadBtn" title="Upload Markdown file" aria-label="Upload Markdown file">📂</button>
+      <span id="fileName">No file selected</span>
+    </div>
+  </nav>
+
+  <main>
+    <article id="preview" class="markdown-body"></article>
+  </main>
+
+  <script src="assets/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

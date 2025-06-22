@@ -1,0 +1,82 @@
+/* styles.css */
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #c9d1d9;
+}
+
+#site-name {
+  user-select: none;
+}
+
+#file-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #8b949e;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+#uploadBtn {
+  background: none;
+  border: none;
+  color: #58a6ff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+}
+
+#uploadBtn:hover {
+  color: #1f6feb;
+}
+
+#fileName {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: text;
+}
+
+main {
+  padding: 2rem;
+}
+
+.markdown-body {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  min-height: 300px;
+}
+
+.markdown-body a {
+  color: #58a6ff;
+}
+
+.markdown-body code {
+  background-color: #161b22;
+}
+
+/* Dropzone style on dragover */
+#dropzone.dragover {
+  border-color: #58a6ff !important;
+  color: #58a6ff !important;
+  background-color: #161b22;
+  transition: background-color 0.3s ease;
+}
