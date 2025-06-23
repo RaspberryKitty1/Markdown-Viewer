@@ -1,5 +1,21 @@
 # Changelog
 
+## [v1.5.5] - 2025-06-24
+
+**Fixed:**
+
+* Restored full admonitions support after modularizing scripts  
+  * Corrected `Admonitions.js` tokenizer and renderer integration for proper labels, emojis, and GitHub-style CSS
+
+**Refactored:**
+
+* Split monolithic `styles.css` into modular files for better maintainability:  
+  * `admonitions.css`, `base.css`, `dragdrop.css`, `fileNameInput.css`, `github-markdown.css`, `layout.css`, `master.css`, `mobile.css`, and `topbar.css`
+
+**Other:**
+
+* Maintained all core features: upload, live editing with synchronized scroll, theme toggle, and downloading functionality
+
 ## \[v1.5.4] - 2025-06-23
 
 **Refactored:**

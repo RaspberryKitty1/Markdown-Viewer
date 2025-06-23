@@ -15,6 +15,7 @@ A lightweight, **100% client-side** Markdown viewer and live editor with dark mo
 * **Keyboard Shortcut:** Press `Ctrl+S` or `Cmd+S` to trigger a markdown download.
 * **Scroll Sync:** Editor and preview scroll in sync for seamless editing.
 * **Privacy-Friendly:** All functionality runs in the browser — **your files never leave your device**.
+* **Persistence:** The app now saves the last loaded/uploaded Markdown content and filename in browser localStorage for seamless continuity.
 
 ---
 

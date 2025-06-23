@@ -1,0 +1,36 @@
+/* base.css */
+/* ===== Base Reset ===== */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+body.dark {
+  background-color: #0d1117;
+  color: #c9d1d9;
+
+  --topbar-bg: #161b22;
+  --border-color: #30363d;
+  --button-hover: #1f6feb;
+  --accent: #58a6ff;
+  --bg-editor: #0d1117;
+  --text-color: #c9d1d9;
+  --code-bg: #161b22;
+
+  --dragover-bg: rgba(56, 139, 253, 0.02);
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #1c1c1c;
+
+  --topbar-bg: #f5f5f5;
+  --border-color: #ddd;
+  --button-hover: #005cc5;
+  --accent: #0969da;
+  --bg-editor: #ffffff;
+  --text-color: #1c1c1c;
+  --code-bg: #f0f0f0;
+
+  --dragover-bg: rgba(56, 139, 253, 0.04);
+}

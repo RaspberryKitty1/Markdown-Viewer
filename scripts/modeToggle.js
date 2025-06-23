@@ -1,43 +1,51 @@
 // modeToggle.js
 
-const viewModeSection = document.getElementById('viewModeSection');
-const editModeSection = document.getElementById('editModeSection');
-const modeToggleBtn = document.getElementById('modeToggleBtn');
+(() => {
+  const {
+    viewModeSection,
+    editModeSection,
+    modeToggleBtn,
+    preview,
+  } = window.elements;
 
-function updateToggleButtonText(isEditMode) {
-  modeToggleBtn.textContent = isEditMode
-    ? 'Switch to View Mode'
-    : 'Switch to Edit Mode';
-}
+  const appState = window.appState;
 
-function toggleMode() {
-  const isEditMode = editModeSection.style.display === 'block';
-  
-  if (isEditMode) {
+  function updateToggleButtonText(isEditMode) {
+    modeToggleBtn.textContent = isEditMode
+      ? 'Switch to View Mode'
+      : 'Switch to Edit Mode';
+  }
+
+  function toggleMode() {
+    const isEditMode = editModeSection.style.display === 'block';
+
+    if (isEditMode) {
+      // switching from edit to view
+      editModeSection.style.display = 'none';
+      viewModeSection.style.display = 'block';
+
+      // update view preview with current markdown
+      preview.innerHTML = marked.parse(appState.currentMarkdown);
+    } else {
+      // switching from view to edit
+      editModeSection.style.display = 'block';
+      viewModeSection.style.display = 'none';
+    }
+
+    updateToggleButtonText(!isEditMode);
+  }
+
+  modeToggleBtn.addEventListener('click', toggleMode);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // Default mode is view mode on page load
     editModeSection.style.display = 'none';
     viewModeSection.style.display = 'block';
-  } else {
-    editModeSection.style.display = 'block';
-    viewModeSection.style.display = 'none';
-  }
-  
-  updateToggleButtonText(!isEditMode);
-  
-  if (!isEditMode && typeof updatePreview === 'function') {
-    updatePreview();
-  }
-}
+    updateToggleButtonText(false);
 
-modeToggleBtn.addEventListener('click', toggleMode);
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Default mode is view mode on page load
-  editModeSection.style.display = 'none';
-  viewModeSection.style.display = 'block';
-  updateToggleButtonText(false);
-
-  // Auto-toggle to edit mode on mobile screen sizes
-  if (window.innerWidth <= 768) {
-    toggleMode();
-  }
-});
+    // Auto-toggle to edit mode on mobile screen sizes
+    if (window.innerWidth <= 768) {
+      toggleMode();
+    }
+  });
+})();
