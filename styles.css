@@ -255,3 +255,45 @@ body.dark blockquote.admonition.important {
   border-color: #7c57d9;
   color: #b296f7;
 }
+
+/* File name */
+#fileNameWrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+#fileNameInput {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  width: auto;
+  min-width: 40px;
+  font-family: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#fileNameInput:focus {
+  outline: 1px dashed var(--accent);
+  background-color: var(--code-bg);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+#fileNameSizer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  visibility: hidden;
+  white-space: pre;
+  font-size: 1rem;
+  font-family: inherit;
+}

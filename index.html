@@ -3,60 +3,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Markdown Viewer</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="assets/github-markdown.css" />
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Viewer</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/github-markdown.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <nav id="topbar">
-        <div id="site-name">Markdown Viewer</div>
-        <div id="mode-toggle-container">
-            <button id="modeToggleBtn" aria-label="Toggle Live Edit Mode">Live Edit</button>
-        </div>
-        <div id="file-upload-container">
-            <input type="file" id="fileInput" accept=".md,.markdown,.txt" style="display:none" />
-            <button id="uploadBtn" title="Upload Markdown file" aria-label="Upload Markdown file">📂</button>
-            <span id="fileName">No file selected</span>
-            <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown"
-                style="display:none;">💾</button>
-            <button id="themeToggleBtn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">🌙</button>
-        </div>
-    </nav>
-
-    <main>
-        <section id="uploadModeSection">
-            <article id="preview" class="markdown-body">
-                <p style="color:var(--text-color, #8b949e); text-align:center; margin-top:4rem;">
-                    Upload a markdown file to preview it here.
-                </p>
-            </article>
-        </section>
-
-        <section id="liveEditModeSection" style="display:none;">
-            <div id="liveEditContainer">
-                <textarea id="liveEditTextarea" placeholder="Type or paste markdown here..."></textarea>
-                <article id="livePreview" class="markdown-body">
-                    <div id="livePreviewInner">
-                        <p style="color:var(--text-color); text-align:center;">
-                            Live preview will appear here as you type.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <!-- Drag and Drop Indicator -->
-    <div id="dragIndicator" aria-hidden="true" style="display:none;">
-        Drop file to upload
+  <nav id="topbar">
+    <div id="site-name">Markdown Viewer</div>
+    <div id="mode-toggle-container">
+      <button id="modeToggleBtn" aria-label="Toggle Live Edit Mode">Switch to Edit Mode</button>
     </div>
+    <div id="file-upload-container">
+      <input type="file" id="fileInput" accept=".md,.markdown,.txt" style="display:none" />
+      <button id="uploadBtn" title="Upload Markdown file" aria-label="Upload Markdown file">📂</button>
+      <div id="fileNameWrapper">
+        <span id="fileNameSizer" aria-hidden="true"></span>
+        <input type="text" id="fileNameInput" value="No file selected" title="Rename file" />
+      </div>
+      <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown" style="display:none;">💾</button>
+      <button id="themeToggleBtn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">🌙</button>
+    </div>
+  </nav>
 
-    <script src="assets/marked.min.js"></script>
-    <script src="script.js"></script>
+  <main>
+    <section id="uploadModeSection">
+      <article id="preview" class="markdown-body">
+        <p style="color:var(--text-color, #8b949e); text-align:center; margin-top:4rem;">
+          Upload a markdown file to preview it here.
+        </p>
+      </article>
+    </section>
+
+    <section id="liveEditModeSection" style="display:none;">
+      <div id="liveEditContainer">
+        <textarea id="liveEditTextarea" placeholder="Type or paste markdown here..."></textarea>
+        <article id="livePreview" class="markdown-body">
+          <div id="livePreviewInner">
+            <p style="color:var(--text-color); text-align:center;">
+              Live preview will appear here as you type.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="dragIndicator" aria-hidden="true" style="display:none;">
+    Drop file to upload
+  </div>
+
+  <script src="assets/marked.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

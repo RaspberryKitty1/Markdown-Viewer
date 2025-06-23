@@ -2,12 +2,12 @@
 const fileInput = document.getElementById("fileInput");
 const uploadBtn = document.getElementById("uploadBtn");
 const downloadBtn = document.getElementById("downloadBtn");
-const fileNameSpan = document.getElementById("fileName");
+const fileNameInput = document.getElementById("fileNameInput");
+const fileNameSizer = document.getElementById("fileNameSizer");
 const preview = document.getElementById("preview");
 
-// Rename uploadModeSection to viewModeSection in code for clarity
-const viewModeSection = document.getElementById("uploadModeSection"); // View Mode section
-const editModeSection = document.getElementById("liveEditModeSection"); // Edit Mode section
+const viewModeSection = document.getElementById("uploadModeSection");
+const editModeSection = document.getElementById("liveEditModeSection");
 
 const liveEditTextarea = document.getElementById("liveEditTextarea");
 const livePreviewOuter = document.getElementById("livePreview");
@@ -28,8 +28,7 @@ marked.setOptions({
 
 const tokenizer = {
   blockquote(src) {
-    const regex =
-      /^(> \[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)\][^\n]*(\n>.*)*)/i;
+    const regex = /^(> \[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)\][^\n]*(\n>.*)*)/i;
     const match = regex.exec(src);
     if (match) {
       const raw = match[0];
@@ -41,7 +40,6 @@ const tokenizer = {
         .slice(1);
 
       const content = contentLines.join("\n");
-
       const tokens = this.lexer.blockTokens(content);
 
       return {
@@ -70,7 +68,6 @@ renderer.blockquote = function (token) {
     const type = token.admonitionType.toLowerCase();
     const icon = icons[type] || "";
     const displayType = type.charAt(0).toUpperCase() + type.slice(1);
-
     const inner = this.parser.parse(token.tokens);
 
     return `
@@ -80,8 +77,7 @@ renderer.blockquote = function (token) {
       </blockquote>
     `;
   }
-  const inner = this.parser.parse(token.tokens);
-  return `<blockquote>${inner}</blockquote>`;
+  return `<blockquote>${this.parser.parse(token.tokens)}</blockquote>`;
 };
 
 marked.use({ tokenizer, renderer });
@@ -101,6 +97,20 @@ themeToggleBtn.addEventListener("click", () => {
   applyTheme(current === "dark" ? "light" : "dark");
 });
 
+function updateFileNameWidth() {
+  fileNameSizer.textContent = fileNameInput.value || " ";
+  fileNameInput.style.width = `${fileNameSizer.offsetWidth + 8}px`;
+}
+
+fileNameInput.addEventListener("input", updateFileNameWidth);
+
+fileNameInput.addEventListener("blur", () => {
+  fileNameInput.value = fileNameInput.value
+    .replace(/[<>:"/\\|?*\x00-\x1F]/g, "")
+    .trim() || "markdown.md";
+  updateFileNameWidth();
+});
+
 function loadFile(file) {
   if (!file) return;
   if (!/\.(md|markdown|txt)$/i.test(file.name)) {
@@ -108,7 +118,8 @@ function loadFile(file) {
     return;
   }
 
-  fileNameSpan.textContent = file.name;
+  fileNameInput.value = file.name;
+  updateFileNameWidth();
 
   const reader = new FileReader();
   reader.onload = () => {
@@ -125,7 +136,6 @@ function loadFile(file) {
 uploadBtn.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", (e) => loadFile(e.target.files[0]));
 
-// Drag and Drop Indicator Logic
 let dragCounter = 0;
 let dragoverTimeout;
 
@@ -154,9 +164,7 @@ document.addEventListener("dragleave", (e) => {
   }
 });
 
-document.addEventListener("dragover", (e) => {
-  e.preventDefault();
-});
+document.addEventListener("dragover", (e) => e.preventDefault());
 
 document.addEventListener("drop", (e) => {
   e.preventDefault();
@@ -185,11 +193,13 @@ liveEditTextarea.addEventListener("scroll", () => {
 });
 
 downloadBtn.addEventListener("click", () => {
+  const filename =
+    (fileNameInput.value || "markdown.md").replace(/\s+/g, "_").trim();
   const blob = new Blob([currentMarkdown], { type: "text/markdown" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = fileNameSpan.textContent || "markdown.md";
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -206,29 +216,20 @@ document.addEventListener("keydown", (e) => {
 modeToggleBtn.addEventListener("click", () => {
   const inEditMode = editModeSection.style.display === "block";
   if (inEditMode) {
-    // Switching FROM Edit Mode TO View Mode:
     currentMarkdown = liveEditTextarea.value;
     preview.innerHTML = marked.parse(currentMarkdown);
-
     editModeSection.style.display = "none";
     viewModeSection.style.display = "block";
-
     modeToggleBtn.textContent = "Switch to Edit Mode";
   } else {
-    // Switching FROM View Mode TO Edit Mode:
     liveEditTextarea.value = currentMarkdown;
     livePreview.innerHTML = marked.parse(currentMarkdown);
-
     editModeSection.style.display = "block";
     viewModeSection.style.display = "none";
-
     modeToggleBtn.textContent = "Switch to View Mode";
   }
   updateDownloadButtonVisibility();
 });
-
-// Initialize button text for starting in View Mode
-modeToggleBtn.textContent = "Switch to Edit Mode";
 
 function updateDownloadButtonVisibility() {
   const inEditMode = editModeSection.style.display === "block";
@@ -236,11 +237,9 @@ function updateDownloadButtonVisibility() {
   if (inEditMode) {
     if (liveEditTextarea.value.trim() !== "") {
       downloadBtn.style.display = "inline";
-      if (
-        !fileNameSpan.textContent ||
-        fileNameSpan.textContent === "No file selected"
-      ) {
-        fileNameSpan.textContent = "live-edit.md";
+      if (!fileNameInput.value || fileNameInput.value === "No file selected") {
+        fileNameInput.value = "live-edit.md";
+        updateFileNameWidth();
       }
     } else {
       downloadBtn.style.display = "none";
@@ -254,4 +253,5 @@ function updateDownloadButtonVisibility() {
   }
 }
 
+updateFileNameWidth();
 updateDownloadButtonVisibility();
