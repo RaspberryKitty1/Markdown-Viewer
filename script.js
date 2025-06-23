@@ -1,3 +1,4 @@
+// script.js
 const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const downloadBtn = document.getElementById('downloadBtn');
@@ -22,7 +23,67 @@ marked.setOptions({
   headerIds: true,
 });
 
-// Theme toggle
+const tokenizer = {
+  blockquote(src) {
+    const regex = /^(> \[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)\][^\n]*(\n>.*)*)/i;
+    const match = regex.exec(src);
+    if (match) {
+      const raw = match[0];
+      const type = match[2].toLowerCase();
+
+      // Split lines, remove leading '> ' and skip the first line ([!WARNING] line)
+      const contentLines = raw
+        .split('\n')
+        .map(line => line.replace(/^> ?/, ''))
+        .slice(1);  // <-- remove first line that has the [!WARNING] tag
+
+      const content = contentLines.join('\n');
+
+      const tokens = this.lexer.blockTokens(content);
+
+      return {
+        type: 'blockquote',
+        raw,
+        tokens,
+        isAdmonition: true,
+        admonitionType: type,
+      };
+    }
+    return false;
+  }
+};
+
+
+const renderer = new marked.Renderer();
+
+renderer.blockquote = function(token) {
+  if (token.isAdmonition) {
+    const icons = {
+      tip: '💡',
+      note: 'ℹ️',
+      warning: '⚠️',
+      caution: '❗',
+      important: '❗❗',
+    };
+    const type = token.admonitionType.toLowerCase();
+    const icon = icons[type] || '';
+    const displayType = type.charAt(0).toUpperCase() + type.slice(1);
+
+    const inner = this.parser.parse(token.tokens);
+
+    return `
+      <blockquote class="admonition ${type}">
+        <p><strong>${icon} ${displayType}</strong></p>
+        ${inner}
+      </blockquote>
+    `;
+  }
+  const inner = this.parser.parse(token.tokens);
+  return `<blockquote>${inner}</blockquote>`;
+};
+
+marked.use({ tokenizer, renderer });
+
 function applyTheme(theme) {
   document.body.classList.remove('light', 'dark');
   document.body.classList.add(theme);
@@ -38,7 +99,6 @@ themeToggleBtn.addEventListener('click', () => {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
 
-// File loading
 function loadFile(file) {
   if (!file) return;
   if (!/\.(md|markdown|txt)$/i.test(file.name)) {
@@ -62,7 +122,6 @@ function loadFile(file) {
 uploadBtn.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (e) => loadFile(e.target.files[0]));
 
-// Drag & drop
 dropzone.addEventListener('dragover', (e) => {
   e.preventDefault();
   dropzone.classList.add('dragover');
@@ -78,19 +137,16 @@ dropzone.addEventListener('drop', (e) => {
   if (file) loadFile(file);
 });
 
-// Live preview update
 liveEditTextarea.addEventListener('input', (e) => {
   currentMarkdown = e.target.value;
   livePreview.innerHTML = marked.parse(currentMarkdown);
 });
 
-// One-way scroll sync (textarea → preview)
 liveEditTextarea.addEventListener('scroll', () => {
   const ratio = liveEditTextarea.scrollTop / (liveEditTextarea.scrollHeight - liveEditTextarea.clientHeight);
   livePreviewOuter.scrollTop = ratio * (livePreviewOuter.scrollHeight - livePreviewOuter.clientHeight);
 });
 
-// Download button
 downloadBtn.addEventListener('click', () => {
   const blob = new Blob([currentMarkdown], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
@@ -103,7 +159,6 @@ downloadBtn.addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
-// Ctrl+S triggers download
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
     e.preventDefault();
@@ -111,7 +166,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Toggle view mode
 modeToggleBtn.addEventListener('click', () => {
   const inLiveEdit = liveEditModeSection.style.display === 'block';
   if (inLiveEdit) {
