@@ -123,9 +123,11 @@ You are free to use, modify, and share this project.
 
 ## 📦 Third-Party Attributions
 
-This project uses the following libraries:
+This project uses the following libraries and assets:
 
-* [`marked`](https://github.com/markedjs/marked) — MIT License
-* [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css) — MIT License
+* [`marked`](https://github.com/markedjs/marked) — MIT License  
+* [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css) — MIT License  
+* Favicon icon created by Muhammad Andy, sourced from [Flaticon](https://www.flaticon.com/free-icons/markdown)
 
 See [NOTICE.md](./NOTICE.md) for full third-party license information.
+
