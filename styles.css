@@ -207,7 +207,9 @@ blockquote.admonition.caution {
 }
 
 blockquote.admonition.important {
-  background-color: rgba(139, 92, 246, 0.1); /* light purple */
-  border-color: #8b5cf6; /* purple */
+  background-color: rgba(139, 92, 246, 0.1);
+  /* light purple */
+  border-color: #8b5cf6;
+  /* purple */
   color: #8b5cf6;
 }
