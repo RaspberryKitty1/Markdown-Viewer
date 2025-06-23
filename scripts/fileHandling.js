@@ -41,6 +41,10 @@
       livePreview.innerHTML = marked.parse(appState.currentMarkdown);
       downloadBtn.style.display = "inline";
       updateDownloadButtonVisibility();
+
+      // Persist new markdown text and filename in localStorage
+      localStorage.setItem("markdownText", appState.currentMarkdown);
+      localStorage.setItem("fileName", file.name);
     };
     reader.readAsText(file);
   }
@@ -86,7 +90,11 @@
 
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       loadFile(e.dataTransfer.files[0]);
-      e.dataTransfer.clearData();
+      try {
+        e.dataTransfer.clearData();
+      } catch {
+        // Ignore DOMException if it happens (usually from external files)
+      }
     }
   });
 })();

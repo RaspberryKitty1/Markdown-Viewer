@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.5.7] - 2025-06-23
+
+**Fixed:**
+
+* Persist markdown content and view/edit mode across page reloads.
+* Clear stored markdown and filename on new file upload to prevent stale content.
+* Corrected view mode preview rendering on page load.
+* Improved mode toggle button functionality to reflect current state accurately.
+
+---
+
 ## [v1.5.6] - 2025-06-23
 
 **Improved:**
