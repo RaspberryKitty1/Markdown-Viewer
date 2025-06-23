@@ -4,7 +4,6 @@ const uploadBtn = document.getElementById("uploadBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const fileNameSpan = document.getElementById("fileName");
 const preview = document.getElementById("preview");
-const dropzone = document.getElementById("dropzone");
 
 const modeToggleBtn = document.getElementById("modeToggleBtn");
 const uploadModeSection = document.getElementById("uploadModeSection");
@@ -14,6 +13,8 @@ const livePreviewOuter = document.getElementById("livePreview");
 const livePreview = document.getElementById("livePreviewInner");
 
 const themeToggleBtn = document.getElementById("themeToggleBtn");
+
+const dragIndicator = document.getElementById("dragIndicator");
 
 let currentMarkdown = "";
 
@@ -87,7 +88,6 @@ marked.use({ tokenizer, renderer });
 function applyTheme(theme) {
   document.body.classList.remove("light", "dark");
   document.body.classList.add(theme);
-  // Show the icon of the theme *you can switch to* (sun for light, moon for dark)
   themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
   localStorage.setItem("theme", theme);
 }
@@ -124,19 +124,49 @@ function loadFile(file) {
 uploadBtn.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", (e) => loadFile(e.target.files[0]));
 
-dropzone.addEventListener("dragover", (e) => {
+// Drag and Drop Indicator Logic
+let dragCounter = 0;
+let dragoverTimeout;
+
+document.addEventListener("dragenter", (e) => {
   e.preventDefault();
-  dropzone.classList.add("dragover");
+  dragCounter++;
+
+  if (dragCounter === 1) {
+    dragoverTimeout = setTimeout(() => {
+      dragIndicator.style.display = "block";
+      dragIndicator.style.opacity = "0.9";
+    }, 100);
+  }
 });
-dropzone.addEventListener("dragleave", (e) => {
+
+document.addEventListener("dragleave", (e) => {
   e.preventDefault();
-  dropzone.classList.remove("dragover");
+  dragCounter--;
+  if (dragCounter === 0) {
+    clearTimeout(dragoverTimeout);
+    dragIndicator.style.opacity = "0";
+    setTimeout(() => {
+      dragIndicator.style.display = "none";
+      dragIndicator.style.opacity = "0.9"; // reset opacity for next time
+    }, 300);
+  }
 });
-dropzone.addEventListener("drop", (e) => {
+
+document.addEventListener("dragover", (e) => {
   e.preventDefault();
-  dropzone.classList.remove("dragover");
-  const file = e.dataTransfer.files[0];
-  if (file) loadFile(file);
+});
+
+document.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dragCounter = 0;
+  clearTimeout(dragoverTimeout);
+  dragIndicator.style.display = "none";
+
+  if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+    loadFile(e.dataTransfer.files[0]);
+    e.dataTransfer.clearData();
+  }
 });
 
 liveEditTextarea.addEventListener("input", (e) => {
@@ -192,10 +222,8 @@ function updateDownloadButtonVisibility() {
   const inLiveEdit = liveEditModeSection.style.display === "block";
 
   if (inLiveEdit) {
-    // Show download button if textarea is not empty
     if (liveEditTextarea.value.trim() !== "") {
       downloadBtn.style.display = "inline";
-      // If no file name set, use default
       if (
         !fileNameSpan.textContent ||
         fileNameSpan.textContent === "No file selected"
@@ -206,7 +234,6 @@ function updateDownloadButtonVisibility() {
       downloadBtn.style.display = "none";
     }
   } else {
-    // Upload mode - show if currentMarkdown is not empty
     if (currentMarkdown.trim() !== "") {
       downloadBtn.style.display = "inline";
     } else {
@@ -215,5 +242,4 @@ function updateDownloadButtonVisibility() {
   }
 }
 
-// Initialize download button visibility on page load
 updateDownloadButtonVisibility();

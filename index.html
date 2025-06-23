@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,11 +33,6 @@
                     Upload a markdown file to preview it here.
                 </p>
             </article>
-
-            <div id="dropzone" aria-label="Drag and drop markdown file here" style="max-width:900px; margin: 2rem auto; border: 2px dashed var(--border-color); 
-                  border-radius: 8px; padding: 2rem; color: var(--text-color); text-align: center; cursor: pointer;">
-                Drag and drop a markdown file here or click 📂 to upload
-            </div>
         </section>
 
         <section id="liveEditModeSection" style="display:none;">
@@ -52,6 +48,11 @@
             </div>
         </section>
     </main>
+
+    <!-- Drag and Drop Indicator -->
+    <div id="dragIndicator" aria-hidden="true" style="display:none;">
+        Drop file to upload
+    </div>
 
     <script src="assets/marked.min.js"></script>
     <script src="script.js"></script>
