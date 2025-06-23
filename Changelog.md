@@ -1,18 +1,28 @@
 # Changelog
 
+## \[v1.5.3] - 2025-06-23
+
+### Added
+
+- Filename display is now an editable `<input>` field, allowing users to rename the file before download.
+- Input width dynamically adjusts to fit the content using a hidden span for sizing.
+
+### Improved
+
+- More intuitive UX for renaming downloaded markdown files directly in the top bar.
+
 ## \[v1.5.2] - 2025-06-22
 
 **Enhancements:**
 
-* Improved UI mode toggling between "View Mode" and "Edit Mode":
+- Improved UI mode toggling between "View Mode" and "Edit Mode":
 
-  * Renamed variables for clarity (`uploadModeSection` → `viewModeSection`, `liveEditModeSection` → `editModeSection`).
-  * Updated toggle button text to explicitly indicate switching between modes ("Switch to Edit Mode" / "Switch to View Mode").
-  * Ensured Markdown preview updates correctly when switching modes.
-  * Added initialization of toggle button text on page load.
+  - Renamed variables for clarity (`uploadModeSection` → `viewModeSection`, `liveEditModeSection` → `editModeSection`).
+  - Updated toggle button text to explicitly indicate switching between modes ("Switch to Edit Mode" / "Switch to View Mode").
+  - Ensured Markdown preview updates correctly when switching modes.
+  - Added initialization of toggle button text on page load.
 
-* Renamed browser tab title from **"Markdown Viewer (Dark Mode)"** to **"Markdown Viewer"** for a cleaner, simpler appearance.
-
+- Renamed browser tab title from **"Markdown Viewer (Dark Mode)"** to **"Markdown Viewer"** for a cleaner, simpler appearance.
 
 ---
 
@@ -20,9 +30,9 @@
 
 **Fixes:**
 
-* Corrected Nginx configuration file path:
+- Corrected Nginx configuration file path:
 
-  * Updated `root` directive from `/var/www/MarkdownViewer` to `/var/www/Markdown-Viewer` to match actual deployment directory name.
+  - Updated `root` directive from `/var/www/MarkdownViewer` to `/var/www/Markdown-Viewer` to match actual deployment directory name.
 
 No other changes in this release.
 
@@ -32,20 +42,20 @@ No other changes in this release.
 
 **Added:**
 
-* New script `Create_Certs.sh` for automated SSL certificate generation:
+- New script `Create_Certs.sh` for automated SSL certificate generation:
 
-  * Generates a Root CA, server private key, CSR, and signs the server certificate with SAN support.
-  * Outputs certificates to a dedicated `certs` directory.
-  * Includes instructions to import the root CA certificate into browsers.
+  - Generates a Root CA, server private key, CSR, and signs the server certificate with SAN support.
+  - Outputs certificates to a dedicated `certs` directory.
+  - Includes instructions to import the root CA certificate into browsers.
 
-* New deployment script `nginx-deploy.sh` to automate Nginx setup and deployment:
+- New deployment script `nginx-deploy.sh` to automate Nginx setup and deployment:
 
-  * Checks for existing SSL certificates, runs `Create_Certs.sh` if missing.
-  * Copies project files, assets, and certificates to deployment directories.
-  * Sets correct permissions on certificates and assets.
-  * Enables the site by creating a symlink in Nginx's sites-enabled.
-  * Validates Nginx configuration and reloads the service.
-  * Performs an HTTPS request test to verify successful deployment.
+  - Checks for existing SSL certificates, runs `Create_Certs.sh` if missing.
+  - Copies project files, assets, and certificates to deployment directories.
+  - Sets correct permissions on certificates and assets.
+  - Enables the site by creating a symlink in Nginx's sites-enabled.
+  - Validates Nginx configuration and reloads the service.
+  - Performs an HTTPS request test to verify successful deployment.
 
 No changes to existing project code.
 
@@ -55,10 +65,10 @@ No changes to existing project code.
 
 **Documentation:**
 
-* Cleaned up trailing blank lines in documentation files:
+- Cleaned up trailing blank lines in documentation files:
 
-  * Removed extra newline at end of `NOTICE.md`.
-  * Removed extra newline at end of `README.md`.
+  - Removed extra newline at end of `NOTICE.md`.
+  - Removed extra newline at end of `README.md`.
 
 No code changes in this release.
 
@@ -66,11 +76,11 @@ No code changes in this release.
 
 **Documentation:**
 
-* Added key project documentation files:
-  * `LICENSE` — MIT License text.
-  * `NOTICE.md` — Third-party attributions and license info.
-  * `README.md` — Project overview, usage, and setup instructions.
-  * `CHANGELOG.md` — Project version history and update log.
+- Added key project documentation files:
+  - `LICENSE` — MIT License text.
+  - `NOTICE.md` — Third-party attributions and license info.
+  - `README.md` — Project overview, usage, and setup instructions.
+  - `CHANGELOG.md` — Project version history and update log.
 
 No code changes in this release.
 
@@ -80,20 +90,20 @@ No code changes in this release.
 
 **Enhancements:**
 
-* **Drag & Drop UX Improvements:**
+- **Drag & Drop UX Improvements:**
 
-  * Removed the old dropzone area and replaced it with a floating **drag indicator** at the top of the viewport that appears when a file is dragged over the window.
-  * Drag indicator fades in after a short delay and fades out smoothly when drag ends or file is dropped, improving visual feedback and user experience.
+  - Removed the old dropzone area and replaced it with a floating **drag indicator** at the top of the viewport that appears when a file is dragged over the window.
+  - Drag indicator fades in after a short delay and fades out smoothly when drag ends or file is dropped, improving visual feedback and user experience.
 
-* **Drag & Drop Logic:**
+- **Drag & Drop Logic:**
 
-  * Improved drag event handling to track nested dragenter/dragleave events correctly via a counter, preventing flickering of the drag indicator.
-  * Files dropped anywhere on the page will trigger file loading, no longer confined to a specific dropzone area.
+  - Improved drag event handling to track nested dragenter/dragleave events correctly via a counter, preventing flickering of the drag indicator.
+  - Files dropped anywhere on the page will trigger file loading, no longer confined to a specific dropzone area.
 
-* **Theming and Styles:**
+- **Theming and Styles:**
 
-  * Added CSS styles for the drag indicator consistent with light/dark themes.
-  * Updated admonition block styling with separate color schemes for light and dark modes, inspired by GitHub’s style for better readability and visual distinction.
+  - Added CSS styles for the drag indicator consistent with light/dark themes.
+  - Updated admonition block styling with separate color schemes for light and dark modes, inspired by GitHub’s style for better readability and visual distinction.
 
 ---
 
@@ -101,21 +111,21 @@ No code changes in this release.
 
 **Fixes & Improvements:**
 
-* **Theme Toggle Button Icon:**
+- **Theme Toggle Button Icon:**
 
-  * Updated the theme toggle button to show the icon of the *next* theme to switch to (sun icon for light mode, moon icon for dark mode) for better user clarity.
+  - Updated the theme toggle button to show the icon of the *next* theme to switch to (sun icon for light mode, moon icon for dark mode) for better user clarity.
 
-* **Download Button Visibility:**
+- **Download Button Visibility:**
 
-  * Added dynamic download button visibility depending on the current mode and markdown content:
+  - Added dynamic download button visibility depending on the current mode and markdown content:
 
-    * In **Live Edit mode**, the download button shows only if the textarea is not empty and auto-sets filename to `live-edit.md` if no file is selected.
-    * In **Upload mode**, the download button shows only if there is loaded markdown content.
-  * Download button visibility updates live on text input, file load, and mode toggle.
+    - In **Live Edit mode**, the download button shows only if the textarea is not empty and auto-sets filename to `live-edit.md` if no file is selected.
+    - In **Upload mode**, the download button shows only if there is loaded markdown content.
+  - Download button visibility updates live on text input, file load, and mode toggle.
 
-* **Initialization:**
+- **Initialization:**
 
-  * Ensures download button visibility is properly initialized on page load.
+  - Ensures download button visibility is properly initialized on page load.
 
 ---
 
@@ -123,22 +133,22 @@ No code changes in this release.
 
 **Added:**
 
-* **Admonition Support in Markdown Preview:**
+- **Admonition Support in Markdown Preview:**
 
-  * Custom tokenizer detects blockquotes starting with `[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)]` syntax.
-  * Rendered as styled admonition blocks with distinct colors, icons, and titles.
-  * Supported admonition types: Tip, Note, Warning, Caution, Important.
-  * Each admonition type has unique background color, border color, and icon for clear visual distinction.
+  - Custom tokenizer detects blockquotes starting with `[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)]` syntax.
+  - Rendered as styled admonition blocks with distinct colors, icons, and titles.
+  - Supported admonition types: Tip, Note, Warning, Caution, Important.
+  - Each admonition type has unique background color, border color, and icon for clear visual distinction.
 
 **Changed:**
 
-* Refactored markdown renderer’s `blockquote` method to support both regular and admonition blockquotes.
-* Removed redundant comments and cleaned up event listener comments in `script.js`.
+- Refactored markdown renderer’s `blockquote` method to support both regular and admonition blockquotes.
+- Removed redundant comments and cleaned up event listener comments in `script.js`.
 
 **CSS:**
 
-* Added styles for `.admonition` blocks with color-coded borders, backgrounds, and text colors for each admonition type.
-* Admonitions have subtle background tints and left borders to visually differentiate from regular blockquotes.
+- Added styles for `.admonition` blocks with color-coded borders, backgrounds, and text colors for each admonition type.
+- Admonitions have subtle background tints and left borders to visually differentiate from regular blockquotes.
 
 ---
 
@@ -146,25 +156,25 @@ No code changes in this release.
 
 **Added:**
 
-* **Theme Toggle Button:**
+- **Theme Toggle Button:**
 
-  * New button in the topbar to switch between Light and Dark themes.
-  * Theme preference saved to `localStorage` and applied on page load.
-* **CSS Custom Properties:**
+  - New button in the topbar to switch between Light and Dark themes.
+  - Theme preference saved to `localStorage` and applied on page load.
+- **CSS Custom Properties:**
 
-  * Introduced CSS variables for colors, borders, backgrounds, and accents for easier theming.
-  * Light and Dark mode color schemes defined using CSS custom properties.
-* **Dynamic Styling:**
+  - Introduced CSS variables for colors, borders, backgrounds, and accents for easier theming.
+  - Light and Dark mode color schemes defined using CSS custom properties.
+- **Dynamic Styling:**
 
-  * Updated inline styles in HTML to use CSS variables for colors and borders.
-  * All buttons, dropzone, markdown preview, and live editor now respond to theme changes.
+  - Updated inline styles in HTML to use CSS variables for colors and borders.
+  - All buttons, dropzone, markdown preview, and live editor now respond to theme changes.
 
 **Changed:**
 
-* Refactored CSS to leverage CSS variables for theming consistency and maintainability.
-* Updated the markdown preview placeholder and dropzone text color styling to use theme-aware variables.
-* Refined button styling to use accent colors from theme variables.
-* Minor markup cleanup with better semantic sectioning.
+- Refactored CSS to leverage CSS variables for theming consistency and maintainability.
+- Updated the markdown preview placeholder and dropzone text color styling to use theme-aware variables.
+- Refined button styling to use accent colors from theme variables.
+- Minor markup cleanup with better semantic sectioning.
 
 ---
 
@@ -172,15 +182,15 @@ No code changes in this release.
 
 **Improved:**
 
-* Wrapped live preview content in `#livePreviewInner` div for better layout control.
-* Adjusted script to target `#livePreviewInner` for markdown rendering while keeping scroll container (`#livePreview`) separate.
-* Added one-way scroll synchronization from live edit textarea to live preview pane for smoother navigation.
-* Enabled Ctrl/Cmd+S keyboard shortcut to trigger markdown download.
-* Minor code cleanup for event listeners and formatting.
-* CSS improvements:
+- Wrapped live preview content in `#livePreviewInner` div for better layout control.
+- Adjusted script to target `#livePreviewInner` for markdown rendering while keeping scroll container (`#livePreview`) separate.
+- Added one-way scroll synchronization from live edit textarea to live preview pane for smoother navigation.
+- Enabled Ctrl/Cmd+S keyboard shortcut to trigger markdown download.
+- Minor code cleanup for event listeners and formatting.
+- CSS improvements:
 
-  * Set full height and overflow-y scroll on live edit textarea and live preview for consistent scroll behavior.
-  * Removed some redundant comments in CSS.
+  - Set full height and overflow-y scroll on live edit textarea and live preview for consistent scroll behavior.
+  - Removed some redundant comments in CSS.
 
 ---
 
@@ -188,30 +198,30 @@ No code changes in this release.
 
 **Added:**
 
-* **Live Edit Mode:**
+- **Live Edit Mode:**
 
-  * New toggle button to switch between Upload Mode and Live Edit Mode.
-  * Live Edit Mode offers a split view with a markdown textarea on the left and a live preview on the right.
-  * Placeholder text for the live edit textarea and live preview area.
-* **Download Button:**
+  - New toggle button to switch between Upload Mode and Live Edit Mode.
+  - Live Edit Mode offers a split view with a markdown textarea on the left and a live preview on the right.
+  - Placeholder text for the live edit textarea and live preview area.
+- **Download Button:**
 
-  * Added a download button to save the current markdown content as a file.
-  * Button appears only after a file is loaded or markdown is entered.
-* **UI Improvements:**
+  - Added a download button to save the current markdown content as a file.
+  - Button appears only after a file is loaded or markdown is entered.
+- **UI Improvements:**
 
-  * Rearranged top navigation bar to include mode toggle, upload button, filename display, and download button.
-  * Added accessible labels and tooltips for new and existing buttons.
-* **Styling:**
+  - Rearranged top navigation bar to include mode toggle, upload button, filename display, and download button.
+  - Added accessible labels and tooltips for new and existing buttons.
+- **Styling:**
 
-  * Added styles for mode toggle button, download button, live edit textarea, and live preview area.
-  * Improved dropzone styling on dragover state.
+  - Added styles for mode toggle button, download button, live edit textarea, and live preview area.
+  - Improved dropzone styling on dragover state.
 
 **Changed:**
 
-* Refactored `loadFile()` to update both upload mode preview and live edit textarea and preview.
-* Updated alerts for file validation to a simpler message.
-* Improved mode toggle logic in `script.js` to switch UI sections and update button text dynamically.
-* Removed the `<!-- index.html -->` comment from the HTML.
+- Refactored `loadFile()` to update both upload mode preview and live edit textarea and preview.
+- Updated alerts for file validation to a simpler message.
+- Improved mode toggle logic in `script.js` to switch UI sections and update button text dynamically.
+- Removed the `<!-- index.html -->` comment from the HTML.
 
 ---
 
@@ -219,16 +229,16 @@ No code changes in this release.
 
 **Added:**
 
-* Initial support for markdown file preview with placeholder text in the preview area.
-* Drag-and-drop upload zone with accessible label, styled with dashed border and instructions.
-* File upload validation to accept only `.md`, `.markdown`, and `.txt` files.
-* Drag-and-drop event handling for markdown file upload.
-* Refactored file reading logic into reusable `loadFile()` function.
-* Click-to-upload button triggering file selector.
+- Initial support for markdown file preview with placeholder text in the preview area.
+- Drag-and-drop upload zone with accessible label, styled with dashed border and instructions.
+- File upload validation to accept only `.md`, `.markdown`, and `.txt` files.
+- Drag-and-drop event handling for markdown file upload.
+- Refactored file reading logic into reusable `loadFile()` function.
+- Click-to-upload button triggering file selector.
 
 **Changed:**
 
-* Added comment header to `index.html` for clarity.
-* Updated markdown preview `<article>` to include placeholder instructions.
+- Added comment header to `index.html` for clarity.
+- Updated markdown preview `<article>` to include placeholder instructions.
 
 ---
