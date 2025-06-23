@@ -4,11 +4,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown Viewer</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="assets/github-markdown.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/github-markdown.css" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/mobile.css" /> 
 </head>
 
 <body>
@@ -24,7 +27,8 @@
         <span id="fileNameSizer" aria-hidden="true"></span>
         <input type="text" id="fileNameInput" value="No file selected" title="Rename file" />
       </div>
-      <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown" style="display:none;">💾</button>
+      <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown"
+        style="display:none;">💾</button>
       <button id="themeToggleBtn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">🌙</button>
     </div>
   </nav>
@@ -56,8 +60,17 @@
     Drop file to upload
   </div>
 
-  <script src="assets/marked.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="scripts/marked.min.js"></script>
+  <script src="scripts/appState.js"></script>
+  <script src="scripts/elements.js"></script>
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/fileHandling.js"></script>
+  <script src="scripts/editor.js"></script>
+  <script src="scripts/download.js"></script>
+  <script src="scripts/modeToggle.js"></script>
+  <script src="scripts/theme.js"></script>
+
 </body>
 
 </html>

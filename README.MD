@@ -1,6 +1,6 @@
 # 📘 Markdown Viewer
 
-A lightweight, browser-based Markdown viewer and live editor with dark mode, drag-and-drop upload, theme toggle, and styled admonitions.
+A lightweight, **100% client-side** Markdown viewer and live editor with dark mode, drag-and-drop upload, theme toggle, and styled admonitions.
 
 ---
 
@@ -14,6 +14,7 @@ A lightweight, browser-based Markdown viewer and live editor with dark mode, dra
 * **Admonition Support:** Styled blockquotes (e.g. TIP, NOTE, WARNING) with icons and colors.
 * **Keyboard Shortcut:** Press `Ctrl+S` or `Cmd+S` to trigger a markdown download.
 * **Scroll Sync:** Editor and preview scroll in sync for seamless editing.
+* **Privacy-Friendly:** All functionality runs in the browser — **your files never leave your device**.
 
 ---
 
@@ -26,8 +27,8 @@ To try it out:
 1. Clone or download the repository.
 2. Open `index.html` in a modern web browser.
 
-> [!NOTE]
-> You can also host it locally or via GitHub Pages once uploaded.
+> [!NOTE]  
+> You can also host it locally or via GitHub Pages or NGINX — it's a static site.
 
 ---
 
@@ -37,7 +38,7 @@ To try it out:
 
 * Click the 📂 **Upload** button or drag a file anywhere onto the page.
 * Supported extensions: `.md`, `.markdown`, `.txt`
-* Preview renders instantly below.
+* Preview renders instantly below — all in your browser.
 
 ### ✍️ Live Edit Mode
 
@@ -60,20 +61,19 @@ To try it out:
 
 ## 📦 Installation & Setup
 
-1. Clone or download this repository (when available).
+1. Clone or download this repository.
 2. Open `index.html` in your browser.
-3. Optional: Host on any static file server, GitHub Pages, or use the provided Nginx config.
+3. Optional: Host on any static file server or GitHub Pages.
 
-> [!IMPORTANT]
-> Nginx config is preconfigured for `markdown.raspberry.lan`.  
-> Update `server_name` and certificate paths as needed for your setup.
+> [!TIP]  
+> Works completely offline once loaded — great for secure or air-gapped environments.
 
 ---
 
 ## 🧩 Customization
 
 * 🎨 **Theme/Styling:** Edit `styles.css` to tweak layout, colors, or appearance.
-* 🧠 **Features:** Extend `script.js` to add more Markdown support or UI features.
+* 🧠 **Features:** Extend individual scripts in `/scripts/` to add functionality.
 * 🔧 **Parser:** You can replace `marked.min.js` with another Markdown library if desired.
 
 ---
@@ -85,7 +85,7 @@ You can use blockquote-style markdown to create special callout boxes:
 ```markdown
 > [!TIP]
 > This is a tip.
-```
+````
 
 Supported types:
 
@@ -116,7 +116,7 @@ Open an issue or fork the project to contribute.
 
 ## 📄 License
 
-Licensed under the [MIT License](./LICENSE).
+Licensed under the [MIT License](./LICENCE).
 You are free to use, modify, and share this project.
 
 ---
@@ -125,8 +125,8 @@ You are free to use, modify, and share this project.
 
 This project uses the following libraries and assets:
 
-* [`marked`](https://github.com/markedjs/marked) — MIT License  
-* [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css) — MIT License  
+* [`marked`](https://github.com/markedjs/marked) — MIT License
+* [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css) — MIT License
 * Favicon icon created by Muhammad Andy, sourced from [Flaticon](https://www.flaticon.com/free-icons/markdown)
 
 See [NOTICE.md](./NOTICE.md) for full third-party license information.

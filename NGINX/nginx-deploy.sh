@@ -28,13 +28,26 @@ if [[ ! -f "$CERTS_DIR/server.crt" || ! -f "$CERTS_DIR/server.key" ]]; then
 fi
 
 echo "Creating deployment directories if they don't exist..."
-mkdir -p "$DEPLOY_DIR" "$DEPLOY_DIR/certs" "$DEPLOY_DIR/assets"
+mkdir -p "$DEPLOY_DIR" "$DEPLOY_DIR/certs" "$DEPLOY_DIR/assets" "$DEPLOY_DIR/scripts" "$DEPLOY_DIR/styles"
 
 echo "Copying main files to $DEPLOY_DIR..."
 cp "$GITHUB_PROJECT_DIR/index.html" "$DEPLOY_DIR/index.html"
 cp "$GITHUB_PROJECT_DIR/favicon.ico" "$DEPLOY_DIR/favicon.ico"
-cp "$GITHUB_PROJECT_DIR/styles.css" "$DEPLOY_DIR/styles.css"
-cp "$GITHUB_PROJECT_DIR/script.js" "$DEPLOY_DIR/script.js"
+
+echo "Copying CSS files to $DEPLOY_DIR/styles..."
+cp "$GITHUB_PROJECT_DIR/styles/github-markdown.css" "$DEPLOY_DIR/styles/github-markdown.css"
+cp "$GITHUB_PROJECT_DIR/styles/styles.css" "$DEPLOY_DIR/styles/styles.css"
+
+echo "Copying JS files to $DEPLOY_DIR/scripts..."
+cp "$GITHUB_PROJECT_DIR/scripts/appState.js" "$DEPLOY_DIR/scripts/appState.js"
+cp "$GITHUB_PROJECT_DIR/scripts/download.js" "$DEPLOY_DIR/scripts/download.js"
+cp "$GITHUB_PROJECT_DIR/scripts/editor.js" "$DEPLOY_DIR/scripts/editor.js"
+cp "$GITHUB_PROJECT_DIR/scripts/elements.js" "$DEPLOY_DIR/scripts/elements.js"
+cp "$GITHUB_PROJECT_DIR/scripts/fileHandling.js" "$DEPLOY_DIR/scripts/fileHandling.js"
+cp "$GITHUB_PROJECT_DIR/scripts/marked.min.js" "$DEPLOY_DIR/scripts/marked.min.js"
+cp "$GITHUB_PROJECT_DIR/scripts/modeToggle.js" "$DEPLOY_DIR/scripts/modeToggle.js"
+cp "$GITHUB_PROJECT_DIR/scripts/theme.js" "$DEPLOY_DIR/scripts/theme.js"
+cp "$GITHUB_PROJECT_DIR/scripts/utils.js" "$DEPLOY_DIR/scripts/utils.js"
 
 echo "Copying assets to $DEPLOY_DIR/assets..."
 cp -r "$GITHUB_PROJECT_DIR/assets/"* "$DEPLOY_DIR/assets/"
