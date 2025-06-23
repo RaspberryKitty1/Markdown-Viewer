@@ -130,4 +130,3 @@ This project uses the following libraries and assets:
 * Favicon icon created by Muhammad Andy, sourced from [Flaticon](https://www.flaticon.com/free-icons/markdown)
 
 See [NOTICE.md](./NOTICE.md) for full third-party license information.
-

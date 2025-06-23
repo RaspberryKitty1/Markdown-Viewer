@@ -34,4 +34,3 @@ Copyright © Sindre Sorhus
 ---
 
 These files are used unmodified (or converted in case of favicon) and remain under their respective licenses.
-
