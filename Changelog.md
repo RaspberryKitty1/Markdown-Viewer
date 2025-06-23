@@ -1,0 +1,172 @@
+# Changelog
+
+## [v1.4.0] - 2025-06-22
+
+**Documentation:**
+
+- Added key project documentation files:
+  - `LICENSE` — MIT License text.
+  - `NOTICE.md` — Third-party attributions and license info.
+  - `README.md` — Project overview, usage, and setup instructions.
+  - `CHANGELOG.md` — Project version history and update log.
+
+No code changes in this release.
+
+---
+
+## \[v1.3.2] - 2025-06-22
+
+**Enhancements:**
+
+- **Drag & Drop UX Improvements:**
+
+  - Removed the old dropzone area and replaced it with a floating **drag indicator** at the top of the viewport that appears when a file is dragged over the window.
+  - Drag indicator fades in after a short delay and fades out smoothly when drag ends or file is dropped, improving visual feedback and user experience.
+
+- **Drag & Drop Logic:**
+
+  - Improved drag event handling to track nested dragenter/dragleave events correctly via a counter, preventing flickering of the drag indicator.
+  - Files dropped anywhere on the page will trigger file loading, no longer confined to a specific dropzone area.
+
+- **Theming and Styles:**
+
+  - Added CSS styles for the drag indicator consistent with light/dark themes.
+  - Updated admonition block styling with separate color schemes for light and dark modes, inspired by GitHub’s style for better readability and visual distinction.
+
+---
+
+## \[v1.3.1] - 2025-06-22
+
+**Fixes & Improvements:**
+
+- **Theme Toggle Button Icon:**
+
+  - Updated the theme toggle button to show the icon of the *next* theme to switch to (sun icon for light mode, moon icon for dark mode) for better user clarity.
+
+- **Download Button Visibility:**
+
+  - Added dynamic download button visibility depending on the current mode and markdown content:
+
+    - In **Live Edit mode**, the download button shows only if the textarea is not empty and auto-sets filename to `live-edit.md` if no file is selected.
+    - In **Upload mode**, the download button shows only if there is loaded markdown content.
+  - Download button visibility updates live on text input, file load, and mode toggle.
+
+- **Initialization:**
+
+  - Ensures download button visibility is properly initialized on page load.
+
+---
+
+## \[v1.3.0] - 2025-06-22
+
+**Added:**
+
+- **Admonition Support in Markdown Preview:**
+
+  - Custom tokenizer detects blockquotes starting with `[!(TIP|NOTE|WARNING|CAUTION|IMPORTANT)]` syntax.
+  - Rendered as styled admonition blocks with distinct colors, icons, and titles.
+  - Supported admonition types: Tip, Note, Warning, Caution, Important.
+  - Each admonition type has unique background color, border color, and icon for clear visual distinction.
+
+**Changed:**
+
+- Refactored markdown renderer’s `blockquote` method to support both regular and admonition blockquotes.
+- Removed redundant comments and cleaned up event listener comments in `script.js`.
+
+**CSS:**
+
+- Added styles for `.admonition` blocks with color-coded borders, backgrounds, and text colors for each admonition type.
+- Admonitions have subtle background tints and left borders to visually differentiate from regular blockquotes.
+
+---
+
+## \[v1.2.0] - 2025-06-22
+
+**Added:**
+
+- **Theme Toggle Button:**
+
+  - New button in the topbar to switch between Light and Dark themes.
+  - Theme preference saved to `localStorage` and applied on page load.
+- **CSS Custom Properties:**
+
+  - Introduced CSS variables for colors, borders, backgrounds, and accents for easier theming.
+  - Light and Dark mode color schemes defined using CSS custom properties.
+- **Dynamic Styling:**
+
+  - Updated inline styles in HTML to use CSS variables for colors and borders.
+  - All buttons, dropzone, markdown preview, and live editor now respond to theme changes.
+
+**Changed:**
+
+- Refactored CSS to leverage CSS variables for theming consistency and maintainability.
+- Updated the markdown preview placeholder and dropzone text color styling to use theme-aware variables.
+- Refined button styling to use accent colors from theme variables.
+- Minor markup cleanup with better semantic sectioning.
+
+---
+
+## \[v1.1.1] - 2025-06-22
+
+**Improved:**
+
+- Wrapped live preview content in `#livePreviewInner` div for better layout control.
+- Adjusted script to target `#livePreviewInner` for markdown rendering while keeping scroll container (`#livePreview`) separate.
+- Added one-way scroll synchronization from live edit textarea to live preview pane for smoother navigation.
+- Enabled Ctrl/Cmd+S keyboard shortcut to trigger markdown download.
+- Minor code cleanup for event listeners and formatting.
+- CSS improvements:
+
+  - Set full height and overflow-y scroll on live edit textarea and live preview for consistent scroll behavior.
+  - Removed some redundant comments in CSS.
+
+---
+
+## \[v1.1.0] - 2025-06-22
+
+**Added:**
+
+- **Live Edit Mode:**
+
+  - New toggle button to switch between Upload Mode and Live Edit Mode.
+  - Live Edit Mode offers a split view with a markdown textarea on the left and a live preview on the right.
+  - Placeholder text for the live edit textarea and live preview area.
+- **Download Button:**
+
+  - Added a download button to save the current markdown content as a file.
+  - Button appears only after a file is loaded or markdown is entered.
+- **UI Improvements:**
+
+  - Rearranged top navigation bar to include mode toggle, upload button, filename display, and download button.
+  - Added accessible labels and tooltips for new and existing buttons.
+- **Styling:**
+
+  - Added styles for mode toggle button, download button, live edit textarea, and live preview area.
+  - Improved dropzone styling on dragover state.
+
+**Changed:**
+
+- Refactored `loadFile()` to update both upload mode preview and live edit textarea and preview.
+- Updated alerts for file validation to a simpler message.
+- Improved mode toggle logic in `script.js` to switch UI sections and update button text dynamically.
+- Removed the `<!-- index.html -->` comment from the HTML.
+
+---
+
+## \[v1.0.0] - 2025-06-22
+
+**Added:**
+
+- Initial support for markdown file preview with placeholder text in the preview area.
+- Drag-and-drop upload zone with accessible label, styled with dashed border and instructions.
+- File upload validation to accept only `.md`, `.markdown`, and `.txt` files.
+- Drag-and-drop event handling for markdown file upload.
+- Refactored file reading logic into reusable `loadFile()` function.
+- Click-to-upload button triggering file selector.
+
+**Changed:**
+
+- Added comment header to `index.html` for clarity.
+- Updated markdown preview `<article>` to include placeholder instructions.
+
+---
