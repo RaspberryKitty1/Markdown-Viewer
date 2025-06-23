@@ -87,7 +87,8 @@ marked.use({ tokenizer, renderer });
 function applyTheme(theme) {
   document.body.classList.remove("light", "dark");
   document.body.classList.add(theme);
-  themeToggleBtn.textContent = theme === "dark" ? "🌙" : "☀️";
+  // Show the icon of the theme *you can switch to* (sun for light, moon for dark)
+  themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
   localStorage.setItem("theme", theme);
 }
 
@@ -115,6 +116,7 @@ function loadFile(file) {
     liveEditTextarea.value = currentMarkdown;
     livePreview.innerHTML = marked.parse(currentMarkdown);
     downloadBtn.style.display = "inline";
+    updateDownloadButtonVisibility();
   };
   reader.readAsText(file);
 }
@@ -140,6 +142,7 @@ dropzone.addEventListener("drop", (e) => {
 liveEditTextarea.addEventListener("input", (e) => {
   currentMarkdown = e.target.value;
   livePreview.innerHTML = marked.parse(currentMarkdown);
+  updateDownloadButtonVisibility();
 });
 
 liveEditTextarea.addEventListener("scroll", () => {
@@ -182,4 +185,35 @@ modeToggleBtn.addEventListener("click", () => {
     uploadModeSection.style.display = "none";
     modeToggleBtn.textContent = "Upload Mode";
   }
+  updateDownloadButtonVisibility();
 });
+
+function updateDownloadButtonVisibility() {
+  const inLiveEdit = liveEditModeSection.style.display === "block";
+
+  if (inLiveEdit) {
+    // Show download button if textarea is not empty
+    if (liveEditTextarea.value.trim() !== "") {
+      downloadBtn.style.display = "inline";
+      // If no file name set, use default
+      if (
+        !fileNameSpan.textContent ||
+        fileNameSpan.textContent === "No file selected"
+      ) {
+        fileNameSpan.textContent = "live-edit.md";
+      }
+    } else {
+      downloadBtn.style.display = "none";
+    }
+  } else {
+    // Upload mode - show if currentMarkdown is not empty
+    if (currentMarkdown.trim() !== "") {
+      downloadBtn.style.display = "inline";
+    } else {
+      downloadBtn.style.display = "none";
+    }
+  }
+}
+
+// Initialize download button visibility on page load
+updateDownloadButtonVisibility();
