@@ -93,7 +93,6 @@ main {
   background-color: #161b22;
 }
 
-/* Dropzone styling */
 #dropzone.dragover {
   border-color: #58a6ff !important;
   color: #58a6ff !important;
@@ -101,7 +100,6 @@ main {
   transition: background-color 0.3s ease;
 }
 
-/* Live edit split view */
 #liveEditContainer {
   display: flex;
   gap: 1rem;
@@ -111,6 +109,7 @@ main {
 
 #liveEditTextarea {
   width: 50%;
+  height: 100%;
   padding: 1rem;
   background-color: #0d1117;
   color: #c9d1d9;
@@ -119,12 +118,18 @@ main {
   font-family: monospace;
   font-size: 1rem;
   resize: none;
+  overflow-y: scroll;
 }
 
 #livePreview {
   width: 50%;
+  height: 100%;
   padding: 1rem;
   border: 1px solid #30363d;
   border-radius: 4px;
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+
+#livePreviewInner {
+  min-height: 100%;
 }

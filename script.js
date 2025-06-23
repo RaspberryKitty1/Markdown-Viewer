@@ -9,7 +9,8 @@ const modeToggleBtn = document.getElementById('modeToggleBtn');
 const uploadModeSection = document.getElementById('uploadModeSection');
 const liveEditModeSection = document.getElementById('liveEditModeSection');
 const liveEditTextarea = document.getElementById('liveEditTextarea');
-const livePreview = document.getElementById('livePreview');
+const livePreviewOuter = document.getElementById('livePreview');
+const livePreview = document.getElementById('livePreviewInner');
 
 let currentMarkdown = "";
 
@@ -39,39 +40,36 @@ function loadFile(file) {
   reader.readAsText(file);
 }
 
-// Upload button click opens file dialog
 uploadBtn.addEventListener('click', () => fileInput.click());
 
-// File input change loads file
 fileInput.addEventListener('change', (e) => loadFile(e.target.files[0]));
 
-// Drag and drop handlers
 dropzone.addEventListener('dragover', (e) => {
   e.preventDefault();
   dropzone.classList.add('dragover');
 });
-
 dropzone.addEventListener('dragleave', (e) => {
   e.preventDefault();
   dropzone.classList.remove('dragover');
 });
-
 dropzone.addEventListener('drop', (e) => {
   e.preventDefault();
   dropzone.classList.remove('dragover');
   const file = e.dataTransfer.files[0];
-  if (file) {
-    loadFile(file);
-  }
+  if (file) loadFile(file);
 });
 
-// Live edit input handler
 liveEditTextarea.addEventListener('input', (e) => {
   currentMarkdown = e.target.value;
   livePreview.innerHTML = marked.parse(currentMarkdown);
 });
 
-// Download current markdown
+// One-way scroll sync (textarea → preview)
+liveEditTextarea.addEventListener('scroll', () => {
+  const ratio = liveEditTextarea.scrollTop / (liveEditTextarea.scrollHeight - liveEditTextarea.clientHeight);
+  livePreviewOuter.scrollTop = ratio * (livePreviewOuter.scrollHeight - livePreviewOuter.clientHeight);
+});
+
 downloadBtn.addEventListener('click', () => {
   const blob = new Blob([currentMarkdown], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
@@ -84,7 +82,13 @@ downloadBtn.addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
-// Mode toggle
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    downloadBtn.click();
+  }
+});
+
 modeToggleBtn.addEventListener('click', () => {
   const inLiveEdit = liveEditModeSection.style.display === 'block';
 
