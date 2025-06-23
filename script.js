@@ -12,6 +12,8 @@ const liveEditTextarea = document.getElementById('liveEditTextarea');
 const livePreviewOuter = document.getElementById('livePreview');
 const livePreview = document.getElementById('livePreviewInner');
 
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+
 let currentMarkdown = "";
 
 marked.setOptions({
@@ -20,6 +22,23 @@ marked.setOptions({
   headerIds: true,
 });
 
+// Theme toggle
+function applyTheme(theme) {
+  document.body.classList.remove('light', 'dark');
+  document.body.classList.add(theme);
+  themeToggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+  localStorage.setItem('theme', theme);
+}
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+applyTheme(savedTheme);
+
+themeToggleBtn.addEventListener('click', () => {
+  const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// File loading
 function loadFile(file) {
   if (!file) return;
   if (!/\.(md|markdown|txt)$/i.test(file.name)) {
@@ -41,9 +60,9 @@ function loadFile(file) {
 }
 
 uploadBtn.addEventListener('click', () => fileInput.click());
-
 fileInput.addEventListener('change', (e) => loadFile(e.target.files[0]));
 
+// Drag & drop
 dropzone.addEventListener('dragover', (e) => {
   e.preventDefault();
   dropzone.classList.add('dragover');
@@ -59,6 +78,7 @@ dropzone.addEventListener('drop', (e) => {
   if (file) loadFile(file);
 });
 
+// Live preview update
 liveEditTextarea.addEventListener('input', (e) => {
   currentMarkdown = e.target.value;
   livePreview.innerHTML = marked.parse(currentMarkdown);
@@ -70,6 +90,7 @@ liveEditTextarea.addEventListener('scroll', () => {
   livePreviewOuter.scrollTop = ratio * (livePreviewOuter.scrollHeight - livePreviewOuter.clientHeight);
 });
 
+// Download button
 downloadBtn.addEventListener('click', () => {
   const blob = new Blob([currentMarkdown], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
@@ -82,6 +103,7 @@ downloadBtn.addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
+// Ctrl+S triggers download
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
     e.preventDefault();
@@ -89,9 +111,9 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Toggle view mode
 modeToggleBtn.addEventListener('click', () => {
   const inLiveEdit = liveEditModeSection.style.display === 'block';
-
   if (inLiveEdit) {
     liveEditModeSection.style.display = 'none';
     uploadModeSection.style.display = 'block';

@@ -18,20 +18,21 @@
       <button id="uploadBtn" title="Upload Markdown file" aria-label="Upload Markdown file">📂</button>
       <span id="fileName">No file selected</span>
       <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown" style="display:none;">💾</button>
+      <button id="themeToggleBtn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">🌙</button>
     </div>
   </nav>
 
   <main>
     <section id="uploadModeSection">
       <article id="preview" class="markdown-body">
-        <p style="color:#8b949e; text-align:center; margin-top:4rem;">
+        <p style="color:var(--text-color, #8b949e); text-align:center; margin-top:4rem;">
           Upload a markdown file to preview it here.
         </p>
       </article>
 
       <div id="dropzone" aria-label="Drag and drop markdown file here" 
-           style="max-width:900px; margin: 2rem auto; border: 2px dashed #30363d; 
-                  border-radius: 8px; padding: 2rem; color: #8b949e; text-align: center; cursor: pointer;">
+           style="max-width:900px; margin: 2rem auto; border: 2px dashed var(--border-color); 
+                  border-radius: 8px; padding: 2rem; color: var(--text-color); text-align: center; cursor: pointer;">
         Drag and drop a markdown file here or click 📂 to upload
       </div>
     </section>
@@ -41,7 +42,7 @@
         <textarea id="liveEditTextarea" placeholder="Type or paste markdown here..."></textarea>
         <article id="livePreview" class="markdown-body">
           <div id="livePreviewInner">
-            <p style="color:#8b949e; text-align:center;">
+            <p style="color:var(--text-color); text-align:center;">
               Live preview will appear here as you type.
             </p>
           </div>
