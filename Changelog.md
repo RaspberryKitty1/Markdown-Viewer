@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.5.6] - 2025-06-23
+
+**Improved:**
+
+* Enhanced live editor scroll synchronization:
+  * Scroll syncing now works smoothly in both directions between the textarea and preview pane.
+  * Reduced jitter by preventing circular scroll event triggering.
+  
+---
+
 ## [v1.5.5] - 2025-06-24
 
 **Fixed:**
@@ -15,6 +25,8 @@
 **Other:**
 
 * Maintained all core features: upload, live editing with synchronized scroll, theme toggle, and downloading functionality
+
+---
 
 ## \[v1.5.4] - 2025-06-23
 
