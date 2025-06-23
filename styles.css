@@ -1,4 +1,3 @@
-/* styles.css */
 body {
   background-color: #0d1117;
   color: #c9d1d9;
@@ -31,7 +30,8 @@ body {
   font-size: 1rem;
 }
 
-#uploadBtn {
+#uploadBtn,
+#downloadBtn {
   background: none;
   border: none;
   color: #58a6ff;
@@ -41,7 +41,8 @@ body {
   padding: 0;
 }
 
-#uploadBtn:hover {
+#uploadBtn:hover,
+#downloadBtn:hover {
   color: #1f6feb;
 }
 
@@ -53,16 +54,35 @@ body {
   user-select: text;
 }
 
+#mode-toggle-container {
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+#modeToggleBtn {
+  background: none;
+  border: 1px solid #58a6ff;
+  color: #58a6ff;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#modeToggleBtn:hover {
+  background-color: #1f6feb;
+  color: white;
+}
+
 main {
   padding: 2rem;
 }
 
 .markdown-body {
-  max-width: 900px;
-  margin: 0 auto;
   background-color: #0d1117;
   color: #c9d1d9;
-  min-height: 300px;
 }
 
 .markdown-body a {
@@ -73,10 +93,38 @@ main {
   background-color: #161b22;
 }
 
-/* Dropzone style on dragover */
+/* Dropzone styling */
 #dropzone.dragover {
   border-color: #58a6ff !important;
   color: #58a6ff !important;
   background-color: #161b22;
   transition: background-color 0.3s ease;
+}
+
+/* Live edit split view */
+#liveEditContainer {
+  display: flex;
+  gap: 1rem;
+  max-width: 100%;
+  height: 80vh;
+}
+
+#liveEditTextarea {
+  width: 50%;
+  padding: 1rem;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 1rem;
+  resize: none;
+}
+
+#livePreview {
+  width: 50%;
+  padding: 1rem;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  overflow-y: auto;
 }
