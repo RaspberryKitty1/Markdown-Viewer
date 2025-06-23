@@ -5,13 +5,15 @@ const downloadBtn = document.getElementById("downloadBtn");
 const fileNameSpan = document.getElementById("fileName");
 const preview = document.getElementById("preview");
 
-const modeToggleBtn = document.getElementById("modeToggleBtn");
-const uploadModeSection = document.getElementById("uploadModeSection");
-const liveEditModeSection = document.getElementById("liveEditModeSection");
+// Rename uploadModeSection to viewModeSection in code for clarity
+const viewModeSection = document.getElementById("uploadModeSection"); // View Mode section
+const editModeSection = document.getElementById("liveEditModeSection"); // Edit Mode section
+
 const liveEditTextarea = document.getElementById("liveEditTextarea");
 const livePreviewOuter = document.getElementById("livePreview");
 const livePreview = document.getElementById("livePreviewInner");
 
+const modeToggleBtn = document.getElementById("modeToggleBtn");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 
 const dragIndicator = document.getElementById("dragIndicator");
@@ -33,11 +35,10 @@ const tokenizer = {
       const raw = match[0];
       const type = match[2].toLowerCase();
 
-      // Split lines, remove leading '> ' and skip the first line ([!WARNING] line)
       const contentLines = raw
         .split("\n")
         .map((line) => line.replace(/^> ?/, ""))
-        .slice(1); // <-- remove first line that has the [!WARNING] tag
+        .slice(1);
 
       const content = contentLines.join("\n");
 
@@ -148,7 +149,7 @@ document.addEventListener("dragleave", (e) => {
     dragIndicator.style.opacity = "0";
     setTimeout(() => {
       dragIndicator.style.display = "none";
-      dragIndicator.style.opacity = "0.9"; // reset opacity for next time
+      dragIndicator.style.opacity = "0.9";
     }, 300);
   }
 });
@@ -203,25 +204,36 @@ document.addEventListener("keydown", (e) => {
 });
 
 modeToggleBtn.addEventListener("click", () => {
-  const inLiveEdit = liveEditModeSection.style.display === "block";
-  if (inLiveEdit) {
-    liveEditModeSection.style.display = "none";
-    uploadModeSection.style.display = "block";
-    modeToggleBtn.textContent = "Live Edit";
+  const inEditMode = editModeSection.style.display === "block";
+  if (inEditMode) {
+    // Switching FROM Edit Mode TO View Mode:
+    currentMarkdown = liveEditTextarea.value;
+    preview.innerHTML = marked.parse(currentMarkdown);
+
+    editModeSection.style.display = "none";
+    viewModeSection.style.display = "block";
+
+    modeToggleBtn.textContent = "Switch to Edit Mode";
   } else {
+    // Switching FROM View Mode TO Edit Mode:
     liveEditTextarea.value = currentMarkdown;
     livePreview.innerHTML = marked.parse(currentMarkdown);
-    liveEditModeSection.style.display = "block";
-    uploadModeSection.style.display = "none";
-    modeToggleBtn.textContent = "Upload Mode";
+
+    editModeSection.style.display = "block";
+    viewModeSection.style.display = "none";
+
+    modeToggleBtn.textContent = "Switch to View Mode";
   }
   updateDownloadButtonVisibility();
 });
 
-function updateDownloadButtonVisibility() {
-  const inLiveEdit = liveEditModeSection.style.display === "block";
+// Initialize button text for starting in View Mode
+modeToggleBtn.textContent = "Switch to Edit Mode";
 
-  if (inLiveEdit) {
+function updateDownloadButtonVisibility() {
+  const inEditMode = editModeSection.style.display === "block";
+
+  if (inEditMode) {
     if (liveEditTextarea.value.trim() !== "") {
       downloadBtn.style.display = "inline";
       if (
