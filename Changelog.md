@@ -1,6 +1,22 @@
 # Changelog
 
-## [v1.5.7] - 2025-06-23
+## \[v1.5.8] - 2025-06-29
+
+**Added:**
+
+* Word and character counters now appear in the top bar next to the **Switch to Edit Mode** button.
+* Introduced `wordCharCounter.js` as a dedicated module for live tracking and updating of word/char counts.
+* Counters update dynamically on text input and after file uploads.
+
+**Fixed:**
+
+* Word and character counts now update correctly after loading a markdown file.
+
+**Changed:**
+
+* Moved word/char count logic out of the main editor script for better modularity and maintainability.
+
+## \[v1.5.7] - 2025-06-23
 
 **Fixed:**
 
@@ -11,7 +27,7 @@
 
 ---
 
-## [v1.5.6] - 2025-06-23
+## \[v1.5.6] - 2025-06-23
 
 **Improved:**
 
@@ -21,7 +37,7 @@
   
 ---
 
-## [v1.5.5] - 2025-06-24
+## \[v1.5.5] - 2025-06-24
 
 **Fixed:**
 
