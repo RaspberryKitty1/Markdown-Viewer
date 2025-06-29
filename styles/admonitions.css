@@ -1,49 +1,44 @@
-/* admonitions.css */
-
-/* Container for admonitions */
+/* ===== Admonitions ===== */
 .admonition {
   border-left: 4px solid;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 6px;
-  font-size: var(--font-size); /* Use CSS variable */
-  color: var(--text-color);
+  font-size: var(--font-size);
   background-color: var(--bg-editor);
+  color: var(--text-color); /* ensures body text stays consistent */
 }
 
-/* Different border colors per admonition type */
-.admonition-tip {
-  border-color: #2cbe4e;
-}
+/* Theme-colored border per type */
+.admonition-tip    { border-color: #2ea44f; }
+.admonition-note   { border-color: #0366d6; }
+.admonition-warning{ border-color: #bf8700; }
+.admonition-caution{ border-color: #d73a49; }
+.admonition-important { border-color: #6f42c1; }
 
-.admonition-note {
-  border-color: #1d76db;
-}
+body.dark .admonition-tip    { border-color: #238823; }
+body.dark .admonition-note   { border-color: #1e60d9; }
+body.dark .admonition-warning{ border-color: #c19a00; }
+body.dark .admonition-caution{ border-color: #b53644; }
+body.dark .admonition-important { border-color: #7c57d9; }
 
-.admonition-warning {
-  border-color: #d73a49;
-}
-
-.admonition-caution {
-  border-color: #dbab09;
-}
-
-.admonition-important {
-  border-color: #b31d28;
-}
-
-/* Label at the top of admonition */
+/* Label styles */
 .admonition-label {
   font-weight: 600;
   margin-bottom: 0.5rem;
   user-select: none;
   display: block;
-  font-size: inherit; /* inherit font size */
-  color: var(--text-color);
 }
 
-/* Content inside admonition */
-.admonition > *:not(.admonition-label) {
-  font-size: inherit; /* inherit font size */
-  color: var(--text-color);
-}
+/* Colored label text per type */
+.admonition-tip .admonition-label    { color: #2ea44f; }
+.admonition-note .admonition-label   { color: #0366d6; }
+.admonition-warning .admonition-label{ color: #bf8700; }
+.admonition-caution .admonition-label{ color: #d73a49; }
+.admonition-important .admonition-label{ color: #6f42c1; }
+
+body.dark .admonition-tip .admonition-label    { color: #8bc34a; }
+body.dark .admonition-note .admonition-label   { color: #79aaff; }
+body.dark .admonition-warning .admonition-label{ color: #d4b843; }
+body.dark .admonition-caution .admonition-label{ color: #e57373; }
+body.dark .admonition-important .admonition-label{ color: #b296f7; }

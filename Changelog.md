@@ -1,5 +1,18 @@
 # Changelog
 
+## \[v1.6.2] - 2025-06-29
+
+**Changed:**
+
+* Refactored and streamlined `admonitions.css` for clarity and maintainability.
+
+  * Removed redundant comments and simplified class structure.
+  * Consolidated border color definitions for each admonition type.
+  * Introduced distinct dark mode color overrides for all admonition types.
+  * Applied consistent label coloring across light and dark themes.
+
+---
+
 ## \[v1.6.1] - 2025-06-29
 
 **Added:**
