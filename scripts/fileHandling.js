@@ -45,6 +45,11 @@
       // Persist new markdown text and filename in localStorage
       localStorage.setItem("markdownText", appState.currentMarkdown);
       localStorage.setItem("fileName", file.name);
+
+      // Update word/char counts after file load
+      if (window.updateWordCharCounts) {
+        window.updateWordCharCounts(appState.currentMarkdown);
+      }
     };
     reader.readAsText(file);
   }

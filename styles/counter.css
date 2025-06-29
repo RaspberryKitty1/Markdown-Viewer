@@ -1,0 +1,51 @@
+/* ===== Font Size Selector ===== */
+#font-size-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+#font-size-container label {
+  user-select: none;
+  font-weight: 600;
+}
+
+#fontSizeSelector {
+  font-size: 1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg, white);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  appearance: none;           /* Removes default OS styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Add custom arrow */
+#fontSizeSelector {
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 7 5-7H0z' fill='%23aaa'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 0.6rem;
+  padding-right: 1.5rem;
+}
+
+#fontSizeSelector:hover,
+#fontSizeSelector:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Dark theme */
+body.dark-theme #fontSizeSelector {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 1px solid var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 7 5-7H0z' fill='%23fff'/%3E%3C/svg%3E");
+}
