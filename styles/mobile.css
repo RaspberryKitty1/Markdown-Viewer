@@ -1,34 +1,67 @@
 /* mobile.css - responsive fixes for small screens */
 
 @media (max-width: 768px) {
-  .top-bar {
+  /* Topbar adjustments */
+  #topbar {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 1rem;
   }
 
-  .editor-container {
+  #mode-toggle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  /* Stack live edit container vertically */
+  #liveEditContainer {
+    display: flex;
     flex-direction: column;
+    gap: 1rem;
+    width: 100%;
   }
 
-  #editor,
-  #preview {
+  /* Make textarea and preview full width and reasonable height */
+  #liveEditTextarea,
+  #preview,
+  #livePreview {
     width: 100% !important;
     height: 50vh !important;
+    box-sizing: border-box;
   }
 
+  /* Markdown content padding & font size for readability */
   .markdown-body {
     padding: 1rem !important;
     font-size: 1rem !important;
+    line-height: 1.4;
   }
 
+  /* File name input */
   #fileNameInput {
     max-width: 80%;
     font-size: 1rem;
   }
 
+  /* Buttons bigger and spaced */
   button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.6rem;
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+  }
+
+  /* File upload container */
+  #file-upload-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
   }
 }

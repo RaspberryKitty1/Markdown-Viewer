@@ -1,5 +1,24 @@
 # Changelog
 
+## \[v1.5.9] - 2025-06-29
+
+**Added:**
+
+* Added a new `responsive.css` stylesheet to improve mobile responsiveness and usability.
+* Responsive improvements include flexible top bar layout, stacked editing sections, and larger buttons for easier touch targets on small screens.
+
+**Changed:**
+
+* Removed the `<link>` reference to `fontSizeSelector.css` as the font size selector feature was planned but not implemented.
+* Removed direct `<link>` to `topbar.css` since its styles are imported via `master.css`.
+* Adjusted word and character counter font size for better mobile readability.
+
+**Fixed:**
+
+* Corrected CSS selector mismatches in mobile styles to properly target existing HTML elements, enabling effective responsive behavior.
+
+---
+
 ## \[v1.5.8] - 2025-06-29
 
 **Added:**
@@ -15,6 +34,8 @@
 **Changed:**
 
 * Moved word/char count logic out of the main editor script for better modularity and maintainability.
+
+---
 
 ## \[v1.5.7] - 2025-06-23
 

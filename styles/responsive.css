@@ -1,0 +1,37 @@
+/* Make sure topbar container uses flex */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  flex-wrap: nowrap;
+}
+
+/* Live edit container desktop style: side-by-side */
+#liveEditContainer {
+  display: flex;
+  gap: 1rem;
+  height: 80vh;
+}
+
+#liveEditTextarea,
+#livePreview {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Buttons consistent look */
+button {
+  border: none;
+  border-radius: 4px;
+  background-color: var(--button-bg, #ddd);
+  color: var(--button-text, #333);
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg, #ccc);
+}
