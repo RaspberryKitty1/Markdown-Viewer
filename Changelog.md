@@ -1,5 +1,19 @@
 # Changelog
 
+## \[v1.6.1] - 2025-06-29
+
+**Added:**
+
+* A **version string (`v1.6.0`)** is now displayed in the footer of the settings menu next to the "Close" button.
+* Added `#settingsFooter` layout to cleanly organize the button and version label.
+
+**Changed:**
+
+* Cleaned up the `index.html` formatting for better readability and consistent style.
+* Moved previously inline styles for layout (`settingsFooter`) into `settings.css` for maintainability.
+
+---
+
 ## \[v1.6.0] - 2025-06-29
 
 **Added:**

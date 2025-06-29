@@ -9,7 +9,7 @@
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   z-index: 1000;
-  font-size: 0.9rem; /* fixed font size */
+  font-size: 0.9rem;
 }
 
 #settingsMenu label {
@@ -30,6 +30,16 @@
   color: var(--text-color);
 }
 
-#closeSettingsBtn {
-  margin-top: 1rem;
+#settingsFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+#versionString {
+  opacity: 0.75;
+  user-select: none;
 }
