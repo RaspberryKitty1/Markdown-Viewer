@@ -1,9 +1,9 @@
-/* styles.css - main import */
-
+@import "variables.css";
 @import "base.css";
 @import "topbar.css";
 @import "layout.css";
 @import "admonitions.css";
 @import "dragdrop.css";
 @import "fileNameInput.css";
-@import 'counter.css';
+@import "counter.css";
+@import "settings.css";

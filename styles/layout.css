@@ -1,7 +1,21 @@
 /* layout.css */
+
 /* ===== Content ===== */
 main {
   padding: 2rem;
+}
+
+#contentWrapper {
+  font-size: var(--font-size, 16px);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#contentWrapper .markdown-body,
+#contentWrapper textarea {
+  font-size: inherit;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .markdown-body {

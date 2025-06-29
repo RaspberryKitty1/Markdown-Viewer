@@ -1,5 +1,31 @@
 # Changelog
 
+## \[v1.6.0] - 2025-06-29
+
+**Added:**
+
+* Introduced a settings menu accessible via ⚙️ button, allowing users to:
+
+  * Toggle dark/light mode
+  * Show or hide word/char counters
+  * Adjust font size dynamically
+* Added `settings.css` and `settings.js` to handle layout and logic for the settings menu.
+
+**Changed:**
+
+* Theme toggle functionality (`theme.js`) now reads from a checkbox in the settings menu instead of a standalone button.
+* `theme.js` now respects system dark mode preference (`prefers-color-scheme`) on first load if no theme is saved.
+* Restructured CSS imports in `master.css` for clarity and modularity; `variables.css` now defines shared theme variables like `--font-size` and `--text-color`.
+* Moved all font sizing to use the `--font-size` CSS variable for consistent scaling across layout, editor, and admonitions.
+* Updated `admonitions.css` to inherit global theme colors and font sizes instead of hardcoded values.
+
+**Fixed:**
+
+* Font size selector now properly affects text inside markdown preview, live editor, and admonition blocks.
+* Ensured consistent theming and sizing for markdown content and editor across light and dark modes.
+
+---
+
 ## \[v1.5.9] - 2025-06-29
 
 **Added:**

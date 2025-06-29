@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Markdown Viewer</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles/github-markdown.css" />
-  <link rel="stylesheet" href="styles/master.css" />
-  <link rel="stylesheet" href="styles/mobile.css" />
-  <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/topbar.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/admonitions.css" />
+  <link rel="stylesheet" href="styles/dragdrop.css" />
+  <link rel="stylesheet" href="styles/fileNameInput.css" />
+  <link rel="stylesheet" href="styles/counter.css" />
+  <link rel="stylesheet" href="styles/settings.css" />
 </head>
 <body>
   <nav id="topbar">
     <div id="site-name">Markdown Viewer</div>
 
-    <!-- Mode toggle + word/char counters stacked -->
     <div id="mode-toggle-container" style="display: flex; align-items: center; gap: 1rem;">
       <button id="modeToggleBtn" aria-label="Toggle Live Edit Mode">Switch to Edit Mode</button>
 
@@ -26,7 +30,6 @@
       </div>
     </div>
 
-    <!-- File upload and font size selector container -->
     <div id="file-upload-container">
       <input type="file" id="fileInput" accept=".md,.markdown,.txt" style="display:none" />
       <button id="uploadBtn" title="Upload Markdown file" aria-label="Upload Markdown file">📂</button>
@@ -35,32 +38,53 @@
         <input type="text" id="fileNameInput" value="No file selected" title="Rename file" />
       </div>
       <button id="downloadBtn" title="Download Markdown" aria-label="Download Markdown" style="display:none;">💾</button>
-      <button id="themeToggleBtn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">🌙</button>
+      <button id="settingsBtn" title="Settings" aria-label="Open Settings">⚙️</button>
     </div>
   </nav>
 
-  <main>
-    <section id="uploadModeSection">
-      <article id="preview" class="markdown-body">
-        <p style="color:var(--text-color, #8b949e); text-align:center; margin-top:4rem;">
-          Upload a markdown file to preview it here.
-        </p>
-      </article>
-    </section>
-
-    <section id="liveEditModeSection" style="display:none;">
-      <div id="liveEditContainer">
-        <textarea id="liveEditTextarea" placeholder="Type or paste markdown here..."></textarea>
-        <article id="livePreview" class="markdown-body">
-          <div id="livePreviewInner">
-            <p style="color:var(--text-color); text-align:center;">
-              Live preview will appear here as you type.
-            </p>
-          </div>
+  <div id="contentWrapper">
+    <main>
+      <section id="uploadModeSection">
+        <article id="preview" class="markdown-body">
+          <div id="uploadContent"></div>
+          <p id="uploadPlaceholder" style="color: var(--text-color, #8b949e); text-align:center; margin-top:4rem;">
+            Upload a markdown file to preview it here.
+          </p>
         </article>
-      </div>
-    </section>
-  </main>
+      </section>
+
+      <section id="liveEditModeSection" style="display:none;">
+        <div id="liveEditContainer">
+          <textarea id="liveEditTextarea" placeholder="Type or paste markdown here..."></textarea>
+          <article id="livePreview" class="markdown-body">
+            <div id="livePreviewInner">
+              <div id="liveContent"></div>
+              <p id="livePlaceholder" style="color: var(--text-color); text-align:center; margin-top: 2rem;">
+                Live preview will appear here as you type.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="settingsMenu" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <h2 id="settingsTitle">Settings</h2>
+    <label>
+      <input type="checkbox" id="toggleWordChar" checked />
+      Show Word/Char Count
+    </label>
+    <label>
+      <input type="checkbox" id="toggleTheme" />
+      Enable Dark Mode
+    </label>
+    <label>
+      Font Size:
+      <input type="number" id="fontSizeInput" min="10" max="36" value="16" />
+    </label>
+    <button id="closeSettingsBtn">Close</button>
+  </div>
 
   <div id="dragIndicator" aria-hidden="true" style="display:none;">
     Drop file to upload
@@ -77,6 +101,7 @@
   <script src="scripts/Admonitions.js"></script>
   <script src="scripts/download.js"></script>
   <script src="scripts/theme.js"></script>
+  <script src="scripts/settings.js"></script>
   <script src="scripts/persistence.js"></script>
   <script src="scripts/modeToggle.js"></script>
 </body>
