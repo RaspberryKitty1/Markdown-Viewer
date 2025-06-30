@@ -1,21 +1,36 @@
 # Changelog
 
+You're absolutely right — your `CHANGELOG.md` should reflect the full scope of your recent updates. Here's an updated version of the entry for:
+
+---
+
 ## \[v1.6.3] - 2025-06-30
 
 **Changed:**
 
 * **Styles (`admonitions.css`):**
 
-  * Separated styles for normal blockquotes from admonitions, with distinct light and dark mode colors.
-  * Introduced CSS variables (`--admonition-color`) to unify border and label colors for admonitions.
-  * Simplified and reorganized admonition base styles for clarity and consistency.
-  * Enhanced dark mode support by moving color overrides into CSS variables rather than fixed label colors.
-  * Applied consistent label styling using the new color variable for better maintainability.
+  * Separated default blockquote styles from admonition styling.
+  * Introduced `--admonition-color` and other CSS variables for better color theming.
+  * Improved dark mode handling using CSS variable overrides.
+  * Unified label styles for consistency across themes.
 
 * **Scripts directory restructuring:**
 
-  * Reorganized the `scripts` folder into modular subfolders to improve maintainability and clarity.
-  * Grouped files by functionality: core app logic, features, UI components, and utility functions.
+  * Reorganized `scripts/` into logical subfolders:
+
+    * `core/` – core app logic (e.g. `marked`, `editor`, `Admonitions`)
+    * `features/` – file handling, persistence, word/char counting
+    * `ui/` – DOM elements, theme toggle, mode switching, settings
+    * `utils/` – utility helpers
+
+**Improved:**
+
+* **Deployment Script (`NGINX/Update Files.sh`):**
+
+  * Ensures deployment works from either user or sudo context.
+  * Improved path handling and symlink logic.
+  * Provides clearer logs and Nginx validation feedback.
 
 ---
 
