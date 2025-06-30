@@ -1,9 +1,5 @@
 # Changelog
 
-You're absolutely right — your `CHANGELOG.md` should reflect the full scope of your recent updates. Here's an updated version of the entry for:
-
----
-
 ## \[v1.6.3] - 2025-06-30
 
 **Changed:**
