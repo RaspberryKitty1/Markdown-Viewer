@@ -1,24 +1,44 @@
 :root {
+  /* General Colors */
   --background-color: #ffffff;
   --text-color: #000000;
   --font-size: 16px;
+
   --topbar-bg: #f5f5f5;
   --border-color: #ddd;
   --button-hover: #005cc5;
   --accent: #0969da;
+
   --bg-editor: #ffffff;
   --code-bg: #f0f0f0;
   --dragover-bg: rgba(56, 139, 253, 0.04);
+
+  /* Table Colors */
+  --table-bg: #ffffff;
+  --table-header-bg: #f6f8fa;
+  --table-row-bg: #ffffff;      /* Light mode normal rows */
+  --table-row-alt: #f6f8fa;     /* Light mode alternate rows */
+  --table-hover-bg: #f1f3f5;    /* Optional hover background for light mode */
 }
 
 body.dark {
+  /* General Colors */
   --background-color: #0d1117;
   --text-color: #c9d1d9;
+
   --topbar-bg: #161b22;
   --border-color: #30363d;
   --button-hover: #1f6feb;
   --accent: #58a6ff;
+
   --bg-editor: #0d1117;
   --code-bg: #161b22;
   --dragover-bg: rgba(56, 139, 253, 0.02);
+
+  /* Table Colors */
+  --table-bg: #0d1117;
+  --table-header-bg: #21262d;
+  --table-row-bg: #161b22;      /* Dark mode normal rows */
+  --table-row-alt: #21262d;     /* Dark mode alternate rows */
+  --table-hover-bg: #21262d;    /* Optional hover background for dark mode */
 }
