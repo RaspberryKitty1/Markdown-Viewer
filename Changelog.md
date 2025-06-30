@@ -1,5 +1,25 @@
 # Changelog
 
+## \[v1.6.5] - 2025-06-30
+
+**Added:**
+
+* **Styles (`tables.css` & `variables.css`):**
+
+  * Introduced a dedicated `tables.css` for consistent table styling across themes.
+  * Applied CSS variables for table backgrounds, headers, row alternation, and hover states.
+  * Ensured proper color theming for light and dark modes:
+
+    * Light mode uses subtle grey and white alternating row backgrounds.
+    * Dark mode uses distinct dark greys for header and alternating rows for better readability.
+  * Added responsive horizontal scrolling for tables.
+
+* **Styles (`master.css`):**
+
+  * Imported new `tables.css` to the main stylesheet bundle.
+
+---
+
 ## \[v1.6.4] - 2025-06-30
 
 **Changed:**
