@@ -1,5 +1,23 @@
 # Changelog
 
+## \[v1.6.4] - 2025-06-30
+
+**Changed:**
+
+* **HTML (`index.html`):**
+
+  * Simplified stylesheet includes, replaced multiple CSS imports with consolidated `master.css`, `github-markdown.css`, `mobile.css`, and added `responsive.css`.
+  * Removed redundant or overly specific stylesheet imports for cleaner loading.
+
+* **Styles (`admonitions.css`):**
+
+  * Fixed admonition border colors and label colors to correctly apply distinct colors per admonition type (tip, note, warning, caution, important).
+  * Changed from using CSS variables (`--admonition-color`) to explicit border-left and label colors for better browser compatibility and clarity.
+  * Added dark mode color overrides for admonitions for consistent theming.
+  * Kept normal blockquote styling separate from admonition styling to avoid conflicts.
+
+---
+
 ## \[v1.6.3] - 2025-06-30
 
 **Changed:**
