@@ -1,5 +1,24 @@
 # Changelog
 
+## \[v1.6.3] - 2025-06-30
+
+**Changed:**
+
+* **Styles (`admonitions.css`):**
+
+  * Separated styles for normal blockquotes from admonitions, with distinct light and dark mode colors.
+  * Introduced CSS variables (`--admonition-color`) to unify border and label colors for admonitions.
+  * Simplified and reorganized admonition base styles for clarity and consistency.
+  * Enhanced dark mode support by moving color overrides into CSS variables rather than fixed label colors.
+  * Applied consistent label styling using the new color variable for better maintainability.
+
+* **Scripts directory restructuring:**
+
+  * Reorganized the `scripts` folder into modular subfolders to improve maintainability and clarity.
+  * Grouped files by functionality: core app logic, features, UI components, and utility functions.
+
+---
+
 ## \[v1.6.2] - 2025-06-29
 
 **Changed:**

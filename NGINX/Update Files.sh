@@ -1,54 +1,62 @@
 #!/bin/bash
 
-# Check for root privileges
+# ------------------------------------------------------------------
+# Markdown Viewer Deployment Script for NGINX
+# ------------------------------------------------------------------
+
+# 🔐 Ensure root privileges, escalate if not
 if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root. Please use sudo or switch to root user."
-  exit 1
+  echo "🔐 Root privileges required. Re-running with sudo..."
+  exec sudo "$0" "$@"
 fi
 
-# Paths
+# 📁 Resolve paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 DEPLOY_DIR="/var/www/Markdown-Viewer"
 NGINX_SITES_AVAILABLE="/etc/nginx/sites-available"
 NGINX_SITES_ENABLED="/etc/nginx/sites-enabled"
 CONFIG_NAME="Markdown-Viewer"
 
-# Assuming script lives in NGINX folder, project root is parent dir
-PROJECT_ROOT="$(dirname "$(pwd)")"
+echo "📦 Deploying Markdown Viewer..."
+echo "🔍 Project root: $PROJECT_ROOT"
+echo "📁 Target dir:   $DEPLOY_DIR"
 
-echo "Removing existing deployment directory: $DEPLOY_DIR"
-rm -rf "$DEPLOY_DIR"
+# 🧹 Clean previous deploy
+if [[ -d "$DEPLOY_DIR" ]]; then
+  echo "🧹 Removing old deployment at $DEPLOY_DIR"
+  rm -rf "$DEPLOY_DIR"
+fi
 
-echo "Creating deployment directory..."
+# 📂 Create new target
 mkdir -p "$DEPLOY_DIR"
 
-echo "Copying index.html and favicon.ico..."
+# 📄 Copy core files
 cp "$PROJECT_ROOT/index.html" "$DEPLOY_DIR/"
 cp "$PROJECT_ROOT/favicon.ico" "$DEPLOY_DIR/"
 
-echo "Copying scripts/ directory..."
+# 📁 Copy directories
 cp -r "$PROJECT_ROOT/scripts" "$DEPLOY_DIR/"
-
-echo "Copying styles/ directory..."
 cp -r "$PROJECT_ROOT/styles" "$DEPLOY_DIR/"
 
-echo "Setting permissions..."
+# 🔒 Permissions
 chmod -R 755 "$DEPLOY_DIR"
 
-echo "Enabling site in Nginx..."
+# 🔗 Link NGINX config
 if [[ ! -L "$NGINX_SITES_ENABLED/$CONFIG_NAME" ]]; then
+  echo "🔗 Enabling NGINX site '$CONFIG_NAME'..."
   ln -s "$NGINX_SITES_AVAILABLE/$CONFIG_NAME" "$NGINX_SITES_ENABLED/$CONFIG_NAME"
-  echo "Symlink created for $CONFIG_NAME."
 else
-  echo "Symlink for $CONFIG_NAME already exists."
+  echo "ℹ️ NGINX site '$CONFIG_NAME' already enabled."
 fi
 
-echo "Testing Nginx configuration..."
+# ✅ Test and reload
+echo "🧪 Testing NGINX config..."
 if nginx -t; then
-  echo "Configuration is valid, reloading Nginx..."
+  echo "✅ Reloading NGINX..."
   systemctl reload nginx
+  echo "🚀 Deployment successful!"
 else
-  echo "Error in Nginx configuration, please fix and try again."
+  echo "❌ NGINX configuration test failed. Please fix and retry."
   exit 1
 fi
-
-echo "Deployment complete!"
