@@ -37,8 +37,10 @@
     reader.onload = () => {
       appState.currentMarkdown = reader.result;
       preview.innerHTML = marked.parse(appState.currentMarkdown);
+      hljs.highlightAll();
       liveEditTextarea.value = appState.currentMarkdown;
       livePreview.innerHTML = marked.parse(appState.currentMarkdown);
+      hljs.highlightAll();
       downloadBtn.style.display = "inline";
       updateDownloadButtonVisibility();
 

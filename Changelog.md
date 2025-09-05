@@ -1,5 +1,33 @@
 # Changelog
 
+## [v1.6.7] - 2025-09-05
+
+**Added / Updated:**
+
+* **HTML (`index.html`):**
+  * Added `github-dark.min.css` for dark mode markdown styling.
+  * Added `highlight.min.js` and `Syntax.hilighting.js` to enable syntax highlighting.
+
+* **Scripts:**
+  * **`editor.js`** – Apply `hljs.highlightAll()` on input to highlight code blocks in live preview.
+  * **`fileHandling.js`** – Apply `hljs.highlightAll()` when loading files for consistent code highlighting.
+  * **`persistence.js`** – Apply `hljs.highlightAll()` when restoring saved markdown to maintain highlighted code.
+  * **`modeToggle.js`** – Apply `hljs.highlightAll()` when switching view/edit modes.
+
+## [v1.6.6] - 2025-06-30
+
+**Updated:**
+
+* **Styles (`admonitions.css`):**
+
+  * Renamed and clarified comments for better readability:
+    * `/* Normal blockquote style (not admonitions) */` → `/* Non-admonition blockquotes */`
+    * `/* Admonition base */` → `/* ===== Base Admonition Styling ===== */`
+    * Added `/* ===== Light Theme (default) Colors ===== */` and `/* ===== Dark Theme Overrides ===== */`
+  * Standardized border definitions for all admonitions using `border-left: 4px solid <color>` for both light and dark themes.
+  * Consolidated label color fallbacks and ensured consistent labeling across all admonition types.
+  * Dark mode overrides updated to match new border style syntax for consistency.
+
 ## \[v1.6.5] - 2025-06-30
 
 **Added:**

@@ -22,6 +22,7 @@
       editModeSection.style.display = 'none';
       viewModeSection.style.display = 'block';
       preview.innerHTML = marked.parse(appState.currentMarkdown || '');
+      hljs.highlightAll();
     }
     updateToggleButtonText(isEditMode);
     localStorage.setItem('viewMode', isEditMode ? 'edit' : 'view');

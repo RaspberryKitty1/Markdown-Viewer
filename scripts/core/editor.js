@@ -50,6 +50,7 @@ textarea.addEventListener("input", () => {
   const markdown = textarea.value;
   const html = marked.parse(markdown);
   previewInner.innerHTML = html;
+  hljs.highlightAll();
 });
 
 // Render uploaded markdown

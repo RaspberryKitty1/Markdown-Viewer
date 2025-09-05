@@ -15,6 +15,7 @@
     if (savedText !== null) {
       liveEditTextarea.value = savedText;
       livePreviewInner.innerHTML = marked.parse(savedText);
+      hljs.highlightAll(); // Highlight code blocks
       appState.currentMarkdown = savedText;
     }
 
