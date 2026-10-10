@@ -18,22 +18,6 @@ A lightweight, **100% client-side** Markdown viewer and live editor with dark mo
 * **Privacy-Friendly:** All functionality runs fully in-browser — **your files never leave your device**.
 * **Persistence:** Automatically saves the last loaded/uploaded Markdown content, filename, theme, view mode, font size, and word/char counter visibility to `localStorage` for seamless continuity across sessions.
 
----
-
-## 🌐 Demo
-
-This project is not currently hosted live.
-
-To try it out:
-
-1. Clone or download the repository.
-2. Open `index.html` in a modern web browser.
-
-> [!NOTE]
-> You can also host it locally or via GitHub Pages or NGINX — it’s a fully static site.
-
----
-
 ## 🛠️ Usage
 
 ### 📂 Upload a Markdown File
